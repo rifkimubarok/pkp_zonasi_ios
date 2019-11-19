@@ -15,17 +15,21 @@ struct Profile: Decodable {
     let email : String
 }
 
-class VCLogin: UIViewController {
+class VCLogin: UIViewController,UINavigationControllerDelegate {
     
     @IBOutlet weak var txtUser: UITextField!
     @IBOutlet weak var txtPassword: HideShowPasswordTextField!
     @IBOutlet weak var lblValidasi: UILabel!
-    
+    var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
+    var apiHelper = ApiHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
         lblValidasi.isHidden = true
         // Do any additional setup after loading the view.
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,31 +37,14 @@ class VCLogin: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func navigateLoginSimpkb() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginSimpkb") as! VCLoginSimpkb
+        self.show(newViewController, sender: .none)
+    }
+    
     @IBAction func btnActionLogin(_ sender: Any) {
-        let lock = NSLock()
-        let url = "https://pkp.belajar.kemdikbud.go.id/webservice/rest/server.php?wstoken=099a8fd90660ed31991acc7c59d729f9&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=email&values[0]=adminpkp@simpkb.id";
-        guard let urlObj = URL(string: url) else { return }
-        let task = URLSession.shared.dataTask(with: urlObj){(data, response,error) in
-            do {
-//                guard let data = data else { return }
-//                print(data)
-//                print("ini dari dalem cok")
-//                let dataAsString  = String(data: data,
-//                                           encoding: .utf8)
-//                print(dataAsString)
-//                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                var profiles = try JSONDecoder().decode([Profile].self, from: data!)
-                for prof in profiles{
-                    print(prof.firstname)
-                }
-                lock.unlock()
-            } catch let jsonErr{
-                print("We got error: ",jsonErr)
-            }
-        }
-        task.resume()
-        lock.lock()
-        print("hi")
+        
         guard let _ = txtUser.text, txtUser.text?.count != 0 else {
             lblValidasi.isHidden = false
             lblValidasi.text = "User Tidak boleh Kosong!"
@@ -69,9 +56,73 @@ class VCLogin: UIViewController {
             lblValidasi.text = "Password Tidak boleh Kosong!"
             return
         }
-        UserDefaults.standard.set(true, forKey: "status")
-        Switcher.updateRootVC()
+        lblValidasi.isHidden = true
+        
+//        let lock = NSLock()
+        let dialog = CustomDialog.instance
+        dialog.showLoaderView()
+        checkUser(){status,json,error in
+            guard let json = json else { return }
+            DispatchQueue.main.async {
+                dialog.hideLoaderView()
+                if status! {
+                    var urlString : String = self.apiHelper.EndPointAPI
+                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+                    guard let url = URL(string: urlString) else { return }
+                    //Login via safari web browser
+                    UIApplication.shared.open(url)
+                    //login via webkit view
+//                    self.navigateLoginSimpkb()
+                }else{
+                    self.creatAlert(message: "Username tidak ditemukan!")
+                }
+            }
+            
+        }
+            
+//        UserDefaults.standard.set(true, forKey: "status")
+//        Switcher.updateRootVC()
     }
+    // MARK: Login
+    func checkUser(completion: @escaping (_ status : Bool?, _ json: Any?, _ error: Error?)->()){
+        let username : String = txtUser.text!
+        let password : String = txtPassword.text!
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(password, forKey: "password")
+        let url = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=" + apiHelper.default_token + "&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=email&values[0]="+username;
+            guard let urlObj = URL(string: url) else { return }
+            let task = URLSession.shared.dataTask(with: urlObj){(data, response,error) in
+                guard let data = data else {
+                    print("Nothing data to retrive")
+                    completion(false,nil,error)
+                    return
+                }
+                do {
+                    let json = try JSONDecoder().decode([Profile].self,from: data)
+                    if json.count > 0 {
+                        completion(true,json,error)
+                        return
+                    }else{
+                        completion(false,json,error)
+                        return
+                    }
+                    
+                } catch let jsonErr{
+                    print("We got error: ",jsonErr)
+                }
+            }
+        task.resume()
+    }
+    
+    // MARK: Create Alert
+    func creatAlert(message: String){
+        let alertController = UIAlertController(title: "iOScreator", message:
+            message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
     // MARK: HideShowPasswordTextFieldDelegate
     // Implementing this delegate is entirely optional.

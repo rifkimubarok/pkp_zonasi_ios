@@ -29,6 +29,13 @@
 		8B60EA9E2382086700918115 /* PembelajaranCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */; };
 		8B60EAA0238208A600918115 /* PembelajaranViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */; };
 		8B60EAA32382111300918115 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EAA22382111300918115 /* ImageResizer.swift */; };
+		8BCCFA1223839C4200C8E931 /* ApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA1123839C4200C8E931 /* ApiHelper.swift */; };
+		8BCCFA142383B91F00C8E931 /* CustomDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA132383B91F00C8E931 /* CustomDialog.swift */; };
+		8BCCFA162383BACF00C8E931 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA152383BACF00C8E931 /* ImageView.swift */; };
+		8BCCFA182383FBD900C8E931 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8BCCFA172383FBD900C8E931 /* demo.gif */; };
+		8BCCFA1A2383FE5F00C8E931 /* VCLoginSimpkb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA192383FE5F00C8E931 /* VCLoginSimpkb.swift */; };
+		8BCCFA1C2384133200C8E931 /* WKLoginSSO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA1B2384133200C8E931 /* WKLoginSSO.swift */; };
+		8BCCFA1E2384252900C8E931 /* GLAssetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA1D2384252900C8E931 /* GLAssetHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +84,13 @@
 		8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranCollectionVC.swift; sourceTree = "<group>"; };
 		8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranViewCell.swift; sourceTree = "<group>"; };
 		8B60EAA22382111300918115 /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		8BCCFA1123839C4200C8E931 /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
+		8BCCFA132383B91F00C8E931 /* CustomDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDialog.swift; sourceTree = "<group>"; };
+		8BCCFA152383BACF00C8E931 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		8BCCFA172383FBD900C8E931 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = demo.gif; path = ../../../../../Users/rifkimubarok/Downloads/CustomLoader/CustomLoader/demo.gif; sourceTree = "<group>"; };
+		8BCCFA192383FE5F00C8E931 /* VCLoginSimpkb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLoginSimpkb.swift; sourceTree = "<group>"; };
+		8BCCFA1B2384133200C8E931 /* WKLoginSSO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKLoginSSO.swift; sourceTree = "<group>"; };
+		8BCCFA1D2384252900C8E931 /* GLAssetHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAssetHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +141,7 @@
 		802E2029237E8AD8008D7FBF /* CollectionVIew */ = {
 			isa = PBXGroup;
 			children = (
+				8BCCFA172383FBD900C8E931 /* demo.gif */,
 				8B60EAA1238210FE00918115 /* Helper */,
 				8B60EA9C2382080500918115 /* Adapter */,
 				8B60EA992382078E00918115 /* Object */,
@@ -147,6 +162,7 @@
 				807729BE2381535600E296D3 /* ItemCollectionViewCell.xib */,
 				807729C12381547500E296D3 /* ImageViewerViewController.swift */,
 				807729C32381551E00E296D3 /* CustomLayout.swift */,
+				8BCCFA192383FE5F00C8E931 /* VCLoginSimpkb.swift */,
 			);
 			path = CollectionVIew;
 			sourceTree = "<group>";
@@ -173,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				8B60EA9A238207B800918115 /* Course.swift */,
+				8BCCFA1123839C4200C8E931 /* ApiHelper.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -182,6 +199,7 @@
 			children = (
 				8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */,
 				8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */,
+				8BCCFA1B2384133200C8E931 /* WKLoginSSO.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -190,6 +208,9 @@
 			isa = PBXGroup;
 			children = (
 				8B60EAA22382111300918115 /* ImageResizer.swift */,
+				8BCCFA132383B91F00C8E931 /* CustomDialog.swift */,
+				8BCCFA152383BACF00C8E931 /* ImageView.swift */,
+				8BCCFA1D2384252900C8E931 /* GLAssetHandler.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -300,6 +321,7 @@
 			files = (
 				802E2035237E8AD9008D7FBF /* LaunchScreen.storyboard in Resources */,
 				807729C02381535600E296D3 /* ItemCollectionViewCell.xib in Resources */,
+				8BCCFA182383FBD900C8E931 /* demo.gif in Resources */,
 				802E2032237E8AD9008D7FBF /* Assets.xcassets in Resources */,
 				802E2030237E8AD8008D7FBF /* Main.storyboard in Resources */,
 			);
@@ -327,20 +349,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B60EA9B238207B800918115 /* Course.swift in Sources */,
+				8BCCFA162383BACF00C8E931 /* ImageView.swift in Sources */,
 				80378069238122F200D2C8F1 /* Swither.swift in Sources */,
 				807729BA2381454800E296D3 /* PasswordToggleVisibilityView.swift in Sources */,
 				8037806D238125AD00D2C8F1 /* VCProfile.swift in Sources */,
 				8B60EAA32382111300918115 /* ImageResizer.swift in Sources */,
+				8BCCFA1A2383FE5F00C8E931 /* VCLoginSimpkb.swift in Sources */,
 				8B60EAA0238208A600918115 /* PembelajaranViewCell.swift in Sources */,
 				8037806F2381299A00D2C8F1 /* VCTabBar.swift in Sources */,
 				807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */,
 				802E202D237E8AD8008D7FBF /* VCLogin.swift in Sources */,
 				807729C42381551E00E296D3 /* CustomLayout.swift in Sources */,
 				807729BF2381535600E296D3 /* ItemCollectionViewCell.swift in Sources */,
+				8BCCFA1C2384133200C8E931 /* WKLoginSSO.swift in Sources */,
+				8BCCFA1223839C4200C8E931 /* ApiHelper.swift in Sources */,
 				8037806B2381247700D2C8F1 /* VCPembelajaran.swift in Sources */,
+				8BCCFA1E2384252900C8E931 /* GLAssetHandler.swift in Sources */,
 				802E202B237E8AD8008D7FBF /* AppDelegate.swift in Sources */,
 				807729BC23814D6200E296D3 /* ShowTextField.swift in Sources */,
 				8B60EA9E2382086700918115 /* PembelajaranCollectionVC.swift in Sources */,
+				8BCCFA142383B91F00C8E931 /* CustomDialog.swift in Sources */,
 				807729B82381452000E296D3 /* HideShowPasswordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

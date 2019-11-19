@@ -20,12 +20,15 @@ class Switcher {
         
         if(status == true){
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vctabbar") as! VCTabBar
-        }else{
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                   appDelegate.window?.rootViewController?.show(rootVC!, sender: nil)
+        }
+        else{
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vclogin") as! VCLogin
         }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = rootVC
+        appDelegate.window?.rootViewController?.show(rootVC!, sender: nil)
         
     }
     

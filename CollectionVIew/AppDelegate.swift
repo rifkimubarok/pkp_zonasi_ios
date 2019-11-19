@@ -40,6 +40,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication,
+    open url: URL,
+    options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
+        if let scheme = url.scheme,
+            scheme.localizedCaseInsensitiveCompare("pkpzonasi") == .orderedSame,
+            let view = url.host {
 
+            var parameters: [String: String] = [:]
+            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
+                parameters[$0.name] = $0.value
+                print("hellow")
+            }
+        }
+        print(url)
+        UserDefaults.standard.set(true, forKey: "status")
+        Switcher.updateRootVC()
+        return true
+    }
 }
 
