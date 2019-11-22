@@ -14,7 +14,9 @@ class PembelajaranCollectionVC: UICollectionViewController {
     var course_obj = [Course]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let collectionViewLayout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        collectionViewLayout.itemSize = UICollectionViewFlowLayout.automaticSize
+        collectionViewLayout.estimatedItemSize = CGSize(width : 175, height: 150)
         let count = 1...10
         for number in count {
             let course = Course(course_id: String(number), course_name: "Course Ke-"+String(number), imagename: String(number))
@@ -22,7 +24,8 @@ class PembelajaranCollectionVC: UICollectionViewController {
         }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.title = "Aktifitas"
         // Do any additional setup after loading the view.
     }
 
@@ -37,7 +40,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
     */
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 10
     }
 
     // init banyaknya course
@@ -49,9 +52,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
     
     //init set data to cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PembelajaranViewCell else {
-            fatalError("unable to dequeue")
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PembelajaranViewCell 
         let course = course_obj[indexPath.item]
         // Configure the cell
         cell.course_name.text = course.course_name

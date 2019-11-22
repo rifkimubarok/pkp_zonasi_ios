@@ -15,6 +15,13 @@ struct Profile: Decodable {
     let email : String
 }
 
+struct Token : Decodable {
+    let token : String
+    let error : String
+    let errorcode : String
+//    let privatetoken : String
+}
+
 class VCLogin: UIViewController,UINavigationControllerDelegate {
     
     @IBOutlet weak var txtUser: UITextField!
@@ -61,20 +68,21 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
 //        let lock = NSLock()
         let dialog = CustomDialog.instance
         dialog.showLoaderView()
-        checkUser(){status,json,error in
-            guard let json = json else { return }
+        checkUser_by_password(){status,json,error in
             DispatchQueue.main.async {
                 dialog.hideLoaderView()
                 if status! {
-                    var urlString : String = self.apiHelper.EndPointAPI
-                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
-                    guard let url = URL(string: urlString) else { return }
+//                    var urlString : String = self.apiHelper.EndPointAPI
+//                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+//                    guard let url = URL(string: urlString) else { return }
                     //Login via safari web browser
-                    UIApplication.shared.open(url)
+//                    UIApplication.shared.open(url)
                     //login via webkit view
 //                    self.navigateLoginSimpkb()
+                    UserDefaults.standard.set(true, forKey: "status")
+                    Switcher.updateRootVC()
                 }else{
-                    self.creatAlert(message: "Username tidak ditemukan!")
+                    self.creatAlert(message: "Username/Password Salah!")
                 }
             }
             
@@ -89,7 +97,14 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
         let password : String = txtPassword.text!
         UserDefaults.standard.set(username, forKey: "username")
         UserDefaults.standard.set(password, forKey: "password")
-        let url = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=" + apiHelper.default_token + "&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=email&values[0]="+username;
+        
+        //Server PKP
+//        let url = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=" + apiHelper.default_token + "&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=email&values[0]="+username;
+        
+        // Server Bagren
+        let url = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=" + apiHelper.default_token + "&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=username&values[0]="+username;
+        
+        
             guard let urlObj = URL(string: url) else { return }
             let task = URLSession.shared.dataTask(with: urlObj){(data, response,error) in
                 guard let data = data else {
@@ -116,11 +131,46 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
     
     // MARK: Create Alert
     func creatAlert(message: String){
-        let alertController = UIAlertController(title: "iOScreator", message:
+        let alertController = UIAlertController(title: "Pemberitahuan", message:
             message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
 
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func checkUser_by_password(completion: @escaping (_ status : Bool?, _ json: Any?, _ error: Error?)->()){
+        let username : String = txtUser.text!
+        let password : String = txtPassword.text!
+        
+        let url = apiHelper.EndPointAPI + "login/token.php?service=moodle_mobile_app&username=" + username + "&password=" + password
+        
+        let urlreq = URL(string: url)!
+        
+        let request = URLSession.shared.dataTask(with: urlreq){(data, response,error) in
+            guard let data = data else {
+                print("Nothing data to retrive")
+                completion(false,nil,error)
+                return
+            }
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else { return }
+//                print(json)
+                let token : String = json["token"] as? String ?? ""
+                print("Hello this is my token = " + token)
+                if json["token"] != nil {
+                    UserDefaults.standard.set(token, forKey: "token")
+                    completion(true,json,error)
+                    return
+                }else{
+                    completion(false,json,error)
+                    return
+                }
+            } catch let jsonErr{
+                print("We got error: ",jsonErr)
+            }
+        }
+        request.resume()
     }
     
 }

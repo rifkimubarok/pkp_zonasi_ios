@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,11 @@
 		807729C02381535600E296D3 /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807729BE2381535600E296D3 /* ItemCollectionViewCell.xib */; };
 		807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807729C12381547500E296D3 /* ImageViewerViewController.swift */; };
 		807729C42381551E00E296D3 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807729C32381551E00E296D3 /* CustomLayout.swift */; };
+		8B27A1372386A3220016A03D /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27A1362386A3220016A03D /* CourseTableViewCell.swift */; };
+		8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27A1382386A34B0016A03D /* CourseTableViewController.swift */; };
+		8B27A13C2386B5340016A03D /* RoundedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27A13B2386B5340016A03D /* RoundedUIView.swift */; };
+		8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33DEFC2387E83B003AEBE6 /* LoadImage.swift */; };
+		8B33DF002387E966003AEBE6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B33DEFF2387E966003AEBE6 /* SDWebImage */; };
 		8B60EA9B238207B800918115 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9A238207B800918115 /* Course.swift */; };
 		8B60EA9E2382086700918115 /* PembelajaranCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */; };
 		8B60EAA0238208A600918115 /* PembelajaranViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */; };
@@ -80,6 +85,10 @@
 		807729BE2381535600E296D3 /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		807729C12381547500E296D3 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		807729C32381551E00E296D3 /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
+		8B27A1362386A3220016A03D /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		8B27A1382386A34B0016A03D /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
+		8B27A13B2386B5340016A03D /* RoundedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIView.swift; sourceTree = "<group>"; };
+		8B33DEFC2387E83B003AEBE6 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		8B60EA9A238207B800918115 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranCollectionVC.swift; sourceTree = "<group>"; };
 		8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B33DF002387E966003AEBE6 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +151,7 @@
 		802E2029237E8AD8008D7FBF /* CollectionVIew */ = {
 			isa = PBXGroup;
 			children = (
+				8B27A13A2386B5120016A03D /* Style */,
 				8BCCFA172383FBD900C8E931 /* demo.gif */,
 				8B60EAA1238210FE00918115 /* Helper */,
 				8B60EA9C2382080500918115 /* Adapter */,
@@ -185,6 +196,14 @@
 			path = CollectionVIewUITests;
 			sourceTree = "<group>";
 		};
+		8B27A13A2386B5120016A03D /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				8B27A13B2386B5340016A03D /* RoundedUIView.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
 		8B60EA992382078E00918115 /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +219,8 @@
 				8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */,
 				8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */,
 				8BCCFA1B2384133200C8E931 /* WKLoginSSO.swift */,
+				8B27A1362386A3220016A03D /* CourseTableViewCell.swift */,
+				8B27A1382386A34B0016A03D /* CourseTableViewController.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -211,6 +232,7 @@
 				8BCCFA132383B91F00C8E931 /* CustomDialog.swift */,
 				8BCCFA152383BACF00C8E931 /* ImageView.swift */,
 				8BCCFA1D2384252900C8E931 /* GLAssetHandler.swift */,
+				8B33DEFC2387E83B003AEBE6 /* LoadImage.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -231,6 +253,9 @@
 			dependencies = (
 			);
 			name = CollectionVIew;
+			packageProductDependencies = (
+				8B33DEFF2387E966003AEBE6 /* SDWebImage */,
+			);
 			productName = CollectionVIew;
 			productReference = 802E2027237E8AD8008D7FBF /* PKP Zonasi.app */;
 			productType = "com.apple.product-type.application";
@@ -303,6 +328,9 @@
 				Base,
 			);
 			mainGroup = 802E201E237E8AD8008D7FBF;
+			packageReferences = (
+				8B33DEFE2387E966003AEBE6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 802E2028237E8AD8008D7FBF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,15 +382,19 @@
 				807729BA2381454800E296D3 /* PasswordToggleVisibilityView.swift in Sources */,
 				8037806D238125AD00D2C8F1 /* VCProfile.swift in Sources */,
 				8B60EAA32382111300918115 /* ImageResizer.swift in Sources */,
+				8B27A1372386A3220016A03D /* CourseTableViewCell.swift in Sources */,
 				8BCCFA1A2383FE5F00C8E931 /* VCLoginSimpkb.swift in Sources */,
 				8B60EAA0238208A600918115 /* PembelajaranViewCell.swift in Sources */,
 				8037806F2381299A00D2C8F1 /* VCTabBar.swift in Sources */,
+				8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */,
+				8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */,
 				807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */,
 				802E202D237E8AD8008D7FBF /* VCLogin.swift in Sources */,
 				807729C42381551E00E296D3 /* CustomLayout.swift in Sources */,
 				807729BF2381535600E296D3 /* ItemCollectionViewCell.swift in Sources */,
 				8BCCFA1C2384133200C8E931 /* WKLoginSSO.swift in Sources */,
 				8BCCFA1223839C4200C8E931 /* ApiHelper.swift in Sources */,
+				8B27A13C2386B5340016A03D /* RoundedUIView.swift in Sources */,
 				8037806B2381247700D2C8F1 /* VCPembelajaran.swift in Sources */,
 				8BCCFA1E2384252900C8E931 /* GLAssetHandler.swift in Sources */,
 				802E202B237E8AD8008D7FBF /* AppDelegate.swift in Sources */,
@@ -692,6 +724,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B33DEFE2387E966003AEBE6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B33DEFF2387E966003AEBE6 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B33DEFE2387E966003AEBE6 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 802E201F237E8AD8008D7FBF /* Project object */;
 }

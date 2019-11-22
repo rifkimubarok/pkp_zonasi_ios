@@ -1,0 +1,205 @@
+//
+//  CourseTableViewController.swift
+//  CollectionVIew
+//
+//  Created by Rifki Mubarok on 21/11/19.
+//  Copyright © 2019 Dirjen GTK Kemdikbud-DIKTI. All rights reserved.
+//
+
+import UIKit
+import SDWebImage
+// MARK: Definde course decodable
+struct courseDecode  : Decodable{
+let id : Int
+let fullname: String
+let shortname: String
+let courseimage: String
+}
+
+struct CourseArr : Decodable {
+    let courses : [courseDecode]
+}
+
+// MARK: Defined Course Object
+struct courseObj {
+    let id : Int
+    let fullname: String
+    let shortname: String
+    let courseimage: String
+    
+    init(json: courseDecode) {
+        self.id = json.id
+        self.fullname = json.fullname
+        self.shortname = json.shortname
+        self.courseimage = json.courseimage
+    }
+}
+
+// MARK: controller table
+class CourseTableViewController: UITableViewController {
+    let apiHelper = ApiHelper()
+    var course_data = [courseObj]()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        load_data_course()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return course_data.count
+    }
+
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCourse", for: indexPath) as! CourseTableViewCell
+        let course = course_data[indexPath.item]
+        cell.CourseName.text = course.fullname
+        cell.bannerImage.sd_setImage(with: URL(string: course.courseimage), placeholderImage: UIImage(named: "no_image.png"))
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            self.navigateToSection()
+        }
+    }
+    
+    // MARK: navigate to detail
+
+    func navigateToSection() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "CourseSection") as! PembelajaranCollectionVC
+        self.show(newViewController, sender: .none)
+    }
+    
+    // MARK: Reload data
+    func reload_data() {
+        self.tableView.reloadData()
+    }
+    
+    // MARK: Get Data
+    
+    func load_data_course() {
+        course_data.removeAll()
+        CustomDialog.instance.showLoaderView()
+        var endPointApi : String = apiHelper.EndPointAPI
+        let token : String = UserDefaults.standard.string(forKey: "token") as? String ?? ""
+        endPointApi += "webservice/rest/server.php?";
+        endPointApi += "wstoken=" + token + "&wsfunction=core_course_get_enrolled_courses_by_timeline_classification&moodlewsrestformat=json&classification=inprogress";
+        guard let urlObj = URL(string: endPointApi) else { return }
+        let task = URLSession.shared.dataTask(with: urlObj){
+            (data,respone,error) in
+            
+            if(error != nil){
+                print("We got error");
+                CustomDialog.instance.hideLoaderView()
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do{
+//                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: NSObject] else { return }
+//                guard let course : Any = json["courses"] as? Any ?? "" else { return }
+                print("data nya bro",data)
+                let json = try JSONDecoder().decode(CourseArr.self, from: data)
+                
+                for course in json.courses {
+                    let cour = courseObj(json: course)
+                    print(course.id)
+                    self.course_data.append(cour)
+                }
+                DispatchQueue.main.async {
+                    self.reload_data()
+                    CustomDialog.instance.hideLoaderView()
+                }
+            } catch let jsonErr{
+                print("Getting error", jsonErr)
+                DispatchQueue.main.async {
+                    self.creatAlert(title: "Error", message: "Terjadi Kesalahan")
+                    CustomDialog.instance.hideLoaderView()
+                }
+            }
+        }
+        task.resume()
+    }
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    /*
+    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
+    */
+
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    
+    // MARK: Creating Aler
+    func creatAlert(title: String, message: String){
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+}
+extension UIView {
+    func roundCorners(cornerRadius: Double) {
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+        self.clipsToBounds = true
+    }
+    
+}

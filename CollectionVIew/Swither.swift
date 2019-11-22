@@ -28,7 +28,10 @@ class Switcher {
         }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        print(appDelegate.window?.rootViewController?.navigationController as Any)
         appDelegate.window?.rootViewController?.show(rootVC!, sender: nil)
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.window?.rootViewController.prese
         
     }
     
