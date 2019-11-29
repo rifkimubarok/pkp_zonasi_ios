@@ -8,25 +8,41 @@
 
 import UIKit
 
-private let reuseIdentifier = "Course"
+private let reuseIdentifier = "CourseItem"
 
 class PembelajaranCollectionVC: UICollectionViewController {
-    var course_obj = [Course]()
+    var courseSectionObj = [sectionObj]()
+    var apiHelper = ApiHelper()
+    var estimateWidth = 160.0
+    var cellMarginSize = 16.0
+    var Text : String = ""
+    var iconName = ["1","2","2","3","4","5","6","7","8","9","10"];
     override func viewDidLoad() {
         super.viewDidLoad()
-        let collectionViewLayout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        collectionViewLayout.itemSize = UICollectionViewFlowLayout.automaticSize
-        collectionViewLayout.estimatedItemSize = CGSize(width : 175, height: 150)
-        let count = 1...10
-        for number in count {
-            let course = Course(course_id: String(number), course_name: "Course Ke-"+String(number), imagename: String(number))
-            course_obj.append(course)
-        }
+//        let collectionViewLayout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+//        collectionViewLayout.itemSize = UICollectionViewFlowLayout.automaticSize
+//        collectionViewLayout.estimatedItemSize = CGSize(width : 175, height: 150)
+        self.collectionView.register(UINib(nibName: "PembelajaranItemCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier);
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.title = "Aktifitas"
+        self.setupGridView()
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name:NSNotification.Name(rawValue: "load"), object: nil)
+//        self.get_data(CourseId: 12)
+        print(Text)
+    }
+    
+    // MARK: NotificationCenter
+    
+    @objc func loadList(notification: NSNotification){
+        load_data_course(isRefresh: false)
+        let data = notification.userInfo
+        guard let courseId = data!["courseId"] else { return }
+        get_data(CourseId: courseId as! Int)
     }
 
     /*
@@ -38,62 +54,110 @@ class PembelajaranCollectionVC: UICollectionViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func setupGridView() {
+        let flow = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        flow.minimumInteritemSpacing = CGFloat(self.cellMarginSize)
+        flow.minimumLineSpacing = CGFloat(self.cellMarginSize)
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 10
+        return 1
     }
 
     // init banyaknya course
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return course_obj.count
+        return courseSectionObj.count
     }
 
     
     //init set data to cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PembelajaranViewCell 
-        let course = course_obj[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PembelajaranItemCell
+        let course = courseSectionObj[indexPath.item]
         // Configure the cell
-        cell.course_name.text = course.course_name
-        cell.course_image.image = UIImage(named: course_obj[indexPath.item].imagename)?.resizeImage(120, opaque: true)
+        cell.course_name.text = course.name
+        cell.course_image.contentMode = .scaleAspectFit
+        cell.course_image.image = UIImage(named:iconName[indexPath.item])?.resizeImage(CGFloat(self.estimateWidth), opaque: false
+        )
         return cell
     }
     
-     func collectionView(_ collectionView: UICollectionView, sizeOfPhotoAtIndexPath indexPath: IndexPath) -> CGSize {
-            return UIImage(named: course_obj[indexPath.item].imagename)!.size
+//     func collectionView(_ collectionView: UICollectionView, sizeOfPhotoAtIndexPath indexPath: IndexPath) -> CGSize {
+//            return UIImage(named: course_obj[indexPath.item].imagename)!.size
+//        }
+    
+    
+    // MARK: Get_data
+    
+    func load_data_course(isRefresh : Bool) {
+        
+    }
+    
+    func get_data(CourseId : Int) {
+//        let count = 1...10
+//        for number in count {
+//            let course = Course(course_id: String(number), course_name: "Course Ke-"+String(number), imagename: String(number))
+//            course_obj.append(course)
+//        }
+//
+//        collectionView.reloadData()
+        
+//        CustomDialog.instance.showLoaderView()
+        var endPointApi : String = apiHelper.EndPointAPI
+        let token : String = UserDefaults.standard.string(forKey: "token") ?? ""
+        endPointApi += "webservice/rest/server.php?";
+        endPointApi += "wstoken=" + token + "&wsfunction=core_course_get_contents&moodlewsrestformat=json&courseid=" + String(CourseId);
+        print(endPointApi)
+        guard let urlObj = URL(string: endPointApi) else { return }
+        
+        let getData = URLSession.shared.dataTask(with: urlObj){
+            (data,response,error) in
+            guard let data = data else { return }
+            UserDefaults.standard.data(forKey: "sectionObj"+String(CourseId))
+            self.push_data(data: data)
         }
+        getData.resume()
+    }
     
+    func push_data(data: Data) {
+
+        do{
+            let json = try JSONDecoder().decode([sectionObj].self, from: data)
+            for course in json {
+                courseSectionObj.append(course)
+                print(course.name)
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+            
+        }catch let jsonErr{
+            print(jsonErr)
+        }
+    }
     
-    // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+}
 
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
+extension PembelajaranCollectionVC : UICollectionViewDelegateFlowLayout{
 
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-
+    //    MARK: Layout spacing
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let width = self.calculateWith()
+            return CGSize(width: width, height: width)
+        }
+        
+        func calculateWith() -> CGFloat {
+            let estimatedWidth = CGFloat(estimateWidth)
+            let cellCount = floor(CGFloat(self.view.frame.size.width / estimatedWidth))
+            
+            let margin = CGFloat(cellMarginSize * 2)
+            let width = (self.view.frame.size.width - CGFloat(cellMarginSize) * (cellCount - 1) - margin) / cellCount
+            
+            return width
+        }
 }

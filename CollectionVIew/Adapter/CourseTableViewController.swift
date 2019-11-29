@@ -46,7 +46,7 @@ class CourseTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        load_data_course()
+        load_data_course(isRefresh: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,15 +77,17 @@ class CourseTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            self.navigateToSection()
+            let course = self.course_data[indexPath.item]
+            self.navigateToSection(course_id: course.id)
         }
     }
     
     // MARK: navigate to detail
 
-    func navigateToSection() {
+    func navigateToSection(course_id : Int) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "CourseSection") as! PembelajaranCollectionVC
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "detailCourse") as! VCDetailCourse
+        newViewController.course_id = course_id;
         self.show(newViewController, sender: .none)
     }
     
@@ -96,49 +98,67 @@ class CourseTableViewController: UITableViewController {
     
     // MARK: Get Data
     
-    func load_data_course() {
+    func load_data_course(isRefresh : Bool) {
         course_data.removeAll()
+        let token : String = UserDefaults.standard.string(forKey: "token") ?? ""
+        if isRefresh {
+            get_data()
+        }else{
+            let data = UserDefaults.standard.data(forKey: "course" + token)
+            if data != nil {
+                push_data(data: data!)
+            }else{
+                get_data()
+            }
+        }
+    }
+    
+    func get_data() {
         CustomDialog.instance.showLoaderView()
         var endPointApi : String = apiHelper.EndPointAPI
-        let token : String = UserDefaults.standard.string(forKey: "token") as? String ?? ""
+        let token : String = UserDefaults.standard.string(forKey: "token") ?? ""
         endPointApi += "webservice/rest/server.php?";
         endPointApi += "wstoken=" + token + "&wsfunction=core_course_get_enrolled_courses_by_timeline_classification&moodlewsrestformat=json&classification=inprogress";
         guard let urlObj = URL(string: endPointApi) else { return }
+
         let task = URLSession.shared.dataTask(with: urlObj){
             (data,respone,error) in
-            
             if(error != nil){
                 print("We got error");
                 CustomDialog.instance.hideLoaderView()
                 return
             }
-            
             guard let data = data else { return }
-            
-            do{
-//                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: NSObject] else { return }
-//                guard let course : Any = json["courses"] as? Any ?? "" else { return }
-                print("data nya bro",data)
-                let json = try JSONDecoder().decode(CourseArr.self, from: data)
-                
-                for course in json.courses {
-                    let cour = courseObj(json: course)
-                    print(course.id)
-                    self.course_data.append(cour)
-                }
-                DispatchQueue.main.async {
-                    self.reload_data()
-                    CustomDialog.instance.hideLoaderView()
-                }
-            } catch let jsonErr{
-                print("Getting error", jsonErr)
-                DispatchQueue.main.async {
-                    self.creatAlert(title: "Error", message: "Terjadi Kesalahan")
-                    CustomDialog.instance.hideLoaderView()
-                }
-            }
+            print("data course ",data)
+            UserDefaults.standard.set(data, forKey: "course" + token)
+            self.push_data(data: data)
         }
         task.resume()
+    }
+    
+    func push_data(data: Data) {
+        do{
+        //                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: NSObject] else { return }
+        //                guard let course : Any = json["courses"] as? Any ?? "" else { return }
+                        
+                        let json = try JSONDecoder().decode(CourseArr.self, from: data)
+                        
+                        for course in json.courses {
+                            let cour = courseObj(json: course)
+                            print(course.id)
+                            self.course_data.append(cour)
+                        }
+                        DispatchQueue.main.async {
+                            self.reload_data()
+                            CustomDialog.instance.hideLoaderView()
+                        }
+                    } catch let jsonErr{
+                        print("Getting error", jsonErr, data)
+                        DispatchQueue.main.async {
+                            self.creatAlert(title: "Error", message: "Terjadi Kesalahan")
+                            CustomDialog.instance.hideLoaderView()
+                        }
+                    }
     }
     /*
     // Override to support conditional editing of the table view.
@@ -201,5 +221,4 @@ extension UIView {
         self.layer.cornerRadius = CGFloat(cornerRadius)
         self.clipsToBounds = true
     }
-    
 }

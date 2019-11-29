@@ -50,4 +50,5 @@ extension UIImage {
 
          return newImage
      }
+    
 }
