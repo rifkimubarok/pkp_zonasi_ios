@@ -33,10 +33,23 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
         super.viewDidLoad()
         lblValidasi.isHidden = true
         // Do any additional setup after loading the view.
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -142,6 +155,9 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
     func checkUser_by_password(completion: @escaping (_ status : Bool?, _ json: Any?, _ error: Error?)->()){
         let username : String = txtUser.text!
         let password : String = txtPassword.text!
+        
+        UserDefaults.standard.set(username, forKey: "username")
+        UserDefaults.standard.set(password, forKey: "password")
         
         let url = apiHelper.EndPointAPI + "login/token.php?service=moodle_mobile_app&username=" + username + "&password=" + password
         

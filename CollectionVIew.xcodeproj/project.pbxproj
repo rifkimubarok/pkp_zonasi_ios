@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		802584ED2394054B00F73F75 /* VCWebActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802584EC2394054B00F73F75 /* VCWebActivity.swift */; };
 		802E202B237E8AD8008D7FBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802E202A237E8AD8008D7FBF /* AppDelegate.swift */; };
 		802E202D237E8AD8008D7FBF /* VCLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802E202C237E8AD8008D7FBF /* VCLogin.swift */; };
 		802E2030237E8AD8008D7FBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 802E202E237E8AD8008D7FBF /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		802584EC2394054B00F73F75 /* VCWebActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCWebActivity.swift; sourceTree = "<group>"; };
 		802E2027237E8AD8008D7FBF /* PKP Zonasi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PKP Zonasi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		802E202A237E8AD8008D7FBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		802E202C237E8AD8008D7FBF /* VCLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLogin.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		8BCCFA1123839C4200C8E931 /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
 		8BCCFA132383B91F00C8E931 /* CustomDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDialog.swift; sourceTree = "<group>"; };
 		8BCCFA152383BACF00C8E931 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		8BCCFA172383FBD900C8E931 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = demo.gif; path = ../../../../../Users/rifkimubarok/Downloads/CustomLoader/CustomLoader/demo.gif; sourceTree = "<group>"; };
+		8BCCFA172383FBD900C8E931 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		8BCCFA192383FE5F00C8E931 /* VCLoginSimpkb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLoginSimpkb.swift; sourceTree = "<group>"; };
 		8BCCFA1B2384133200C8E931 /* WKLoginSSO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKLoginSSO.swift; sourceTree = "<group>"; };
 		8BCCFA1D2384252900C8E931 /* GLAssetHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLAssetHandler.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				8BCCFA192383FE5F00C8E931 /* VCLoginSimpkb.swift */,
 				8B91A79623882C4400E4E369 /* VCDetailCourse.swift */,
 				8B71F5972392312400452C2B /* VCModule.swift */,
+				802584EC2394054B00F73F75 /* VCWebActivity.swift */,
 			);
 			path = CollectionVIew;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				8B60EAA0238208A600918115 /* PembelajaranViewCell.swift in Sources */,
 				8B1B9387238D2CE000B24497 /* PembelajaranItemCell.swift in Sources */,
 				8037806F2381299A00D2C8F1 /* VCTabBar.swift in Sources */,
+				802584ED2394054B00F73F75 /* VCWebActivity.swift in Sources */,
 				8BCCF817238D3987007620BA /* UiImageResizer.swift in Sources */,
 				8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */,
 				8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */,

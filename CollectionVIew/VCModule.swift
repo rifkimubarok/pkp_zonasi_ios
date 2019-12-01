@@ -21,6 +21,7 @@ class VCModule: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
         // Do any additional setup after loading the view.
         navigationItem.title = moduleArr.name
         var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"><style>img{width:100% !important;height:auto !important;}</style></HEAD><BODY>" + moduleArr.summary + "</BODY></HTML>"
@@ -72,16 +73,17 @@ extension VCModule : UITableViewDelegate, UITableViewDataSource{
         return 1
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let module = self.moduleArr.modules[indexPath.item]
         DispatchQueue.main.async {
-            self.navigateToSection(course_id: 10)
+            self.navigateToSection(module: module)
         }
     }
     
-    func navigateToSection(course_id : Int) {
+    func navigateToSection(module : moduleObj) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "detailCourse") as! VCDetailCourse
-        newViewController.course_id = course_id;
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "webViewActivity") as! VCWebActivity
+        newViewController.stringModule = module.url ?? ""
         self.show(newViewController, sender: .none)
     }
     

@@ -24,6 +24,7 @@ struct moduleObj : Decodable {
     let id : Int
     let name : String
     let instance : Int
+    let url : String?
 //    let description : String 
     let modicon : String
     let modname : String

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import CollectionVIew
+//@testable import CollectionVIew
 
 class CollectionVIewTests: XCTestCase {
 

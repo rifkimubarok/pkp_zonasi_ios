@@ -664,7 +664,7 @@
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gV3-oM-ufV">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gV3-oM-ufV">
                                         <rect key="frame" x="0.0" y="300" width="414" height="518"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
@@ -735,7 +735,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Hs-FJ-A6c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6196" y="242"/>
+            <point key="canvasLocation" x="5991" y="242"/>
+        </scene>
+        <!--Web Activity-->
+        <scene sceneID="jx9-uo-RrI">
+            <objects>
+                <viewController restorationIdentifier="webViewActivity" storyboardIdentifier="webViewActivity" id="Mzl-ap-3E1" customClass="VCWebActivity" customModule="PKP_Zonasi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CGt-pJ-mZr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-gT-MzT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="E4X-nQ-1Ve" firstAttribute="trailing" secondItem="a6P-gT-MzT" secondAttribute="trailing" id="1zL-90-KgL"/>
+                            <constraint firstItem="a6P-gT-MzT" firstAttribute="leading" secondItem="E4X-nQ-1Ve" secondAttribute="leading" id="29Z-VJ-ajH"/>
+                            <constraint firstItem="a6P-gT-MzT" firstAttribute="top" secondItem="E4X-nQ-1Ve" secondAttribute="top" id="Lf5-bi-q2a"/>
+                            <constraint firstItem="E4X-nQ-1Ve" firstAttribute="bottom" secondItem="a6P-gT-MzT" secondAttribute="bottom" id="r26-yQ-4A4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E4X-nQ-1Ve"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="a6P-gT-MzT" id="FCA-Iv-uT1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WyK-eQ-2fX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5307" y="959"/>
         </scene>
     </scenes>
     <resources>
