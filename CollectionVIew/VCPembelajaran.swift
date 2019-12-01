@@ -17,7 +17,6 @@ class VCPembelajaran: UIViewController {
         case view
         case select
     }
-        
     @IBOutlet weak var collectionView: UICollectionView!
         
     var items: [Item] = [Item(imageName: "1"),

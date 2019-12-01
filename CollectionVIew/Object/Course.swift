@@ -24,7 +24,7 @@ struct moduleObj : Decodable {
     let id : Int
     let name : String
     let instance : Int
-    let description : String
+//    let description : String 
     let modicon : String
     let modname : String
     let indent : Int
@@ -39,7 +39,7 @@ struct sectionObj : Decodable {
     let summaryformat : Int
     let section : Int
     let hiddenbynumsections : Int
-//    let module : [moduleObj]
+    let modules : [moduleObj]
 }
 
 struct sectionArr : Decodable {

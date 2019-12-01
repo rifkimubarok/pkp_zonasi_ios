@@ -31,10 +31,13 @@
 		8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27A1382386A34B0016A03D /* CourseTableViewController.swift */; };
 		8B27A13C2386B5340016A03D /* RoundedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27A13B2386B5340016A03D /* RoundedUIView.swift */; };
 		8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B33DEFC2387E83B003AEBE6 /* LoadImage.swift */; };
+		8B3928C32393F242003BA383 /* GetLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3928C22393F242003BA383 /* GetLink.swift */; };
 		8B60EA9B238207B800918115 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9A238207B800918115 /* Course.swift */; };
 		8B60EA9E2382086700918115 /* PembelajaranCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */; };
 		8B60EAA0238208A600918115 /* PembelajaranViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */; };
 		8B60EAA32382111300918115 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B60EAA22382111300918115 /* ImageResizer.swift */; };
+		8B71F596239230E300452C2B /* ModuleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B71F595239230E300452C2B /* ModuleItemCell.swift */; };
+		8B71F5982392312400452C2B /* VCModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B71F5972392312400452C2B /* VCModule.swift */; };
 		8B91A79723882C4400E4E369 /* VCDetailCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B91A79623882C4400E4E369 /* VCDetailCourse.swift */; };
 		8BCCF817238D3987007620BA /* UiImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCF816238D3987007620BA /* UiImageResizer.swift */; };
 		8BCCFA1223839C4200C8E931 /* ApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCCFA1123839C4200C8E931 /* ApiHelper.swift */; };
@@ -95,10 +98,13 @@
 		8B27A1382386A34B0016A03D /* CourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
 		8B27A13B2386B5340016A03D /* RoundedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUIView.swift; sourceTree = "<group>"; };
 		8B33DEFC2387E83B003AEBE6 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
+		8B3928C22393F242003BA383 /* GetLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLink.swift; sourceTree = "<group>"; };
 		8B60EA9A238207B800918115 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		8B60EA9D2382086700918115 /* PembelajaranCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranCollectionVC.swift; sourceTree = "<group>"; };
 		8B60EA9F238208A600918115 /* PembelajaranViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranViewCell.swift; sourceTree = "<group>"; };
 		8B60EAA22382111300918115 /* ImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		8B71F595239230E300452C2B /* ModuleItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemCell.swift; sourceTree = "<group>"; };
+		8B71F5972392312400452C2B /* VCModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCModule.swift; sourceTree = "<group>"; };
 		8B91A79623882C4400E4E369 /* VCDetailCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCDetailCourse.swift; sourceTree = "<group>"; };
 		8BCCF816238D3987007620BA /* UiImageResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiImageResizer.swift; sourceTree = "<group>"; };
 		8BCCFA1123839C4200C8E931 /* ApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHelper.swift; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 				807729C32381551E00E296D3 /* CustomLayout.swift */,
 				8BCCFA192383FE5F00C8E931 /* VCLoginSimpkb.swift */,
 				8B91A79623882C4400E4E369 /* VCDetailCourse.swift */,
+				8B71F5972392312400452C2B /* VCModule.swift */,
 			);
 			path = CollectionVIew;
 			sourceTree = "<group>";
@@ -218,6 +225,7 @@
 			children = (
 				8B60EA9A238207B800918115 /* Course.swift */,
 				8BCCFA1123839C4200C8E931 /* ApiHelper.swift */,
+				8B3928C22393F242003BA383 /* GetLink.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -232,6 +240,7 @@
 				8B27A1382386A34B0016A03D /* CourseTableViewController.swift */,
 				8B1B9385238D2CE000B24497 /* PembelajaranItemCell.swift */,
 				8B1B9386238D2CE000B24497 /* PembelajaranItemCell.xib */,
+				8B71F595239230E300452C2B /* ModuleItemCell.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -405,11 +414,13 @@
 				8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */,
 				8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */,
 				807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */,
+				8B71F5982392312400452C2B /* VCModule.swift in Sources */,
 				802E202D237E8AD8008D7FBF /* VCLogin.swift in Sources */,
 				807729C42381551E00E296D3 /* CustomLayout.swift in Sources */,
 				807729BF2381535600E296D3 /* ItemCollectionViewCell.swift in Sources */,
 				8BCCFA1C2384133200C8E931 /* WKLoginSSO.swift in Sources */,
 				8BCCFA1223839C4200C8E931 /* ApiHelper.swift in Sources */,
+				8B3928C32393F242003BA383 /* GetLink.swift in Sources */,
 				8B27A13C2386B5340016A03D /* RoundedUIView.swift in Sources */,
 				8037806B2381247700D2C8F1 /* VCPembelajaran.swift in Sources */,
 				8BCCFA1E2384252900C8E931 /* GLAssetHandler.swift in Sources */,
@@ -417,6 +428,7 @@
 				807729BC23814D6200E296D3 /* ShowTextField.swift in Sources */,
 				8B60EA9E2382086700918115 /* PembelajaranCollectionVC.swift in Sources */,
 				8BCCFA142383B91F00C8E931 /* CustomDialog.swift in Sources */,
+				8B71F596239230E300452C2B /* ModuleItemCell.swift in Sources */,
 				807729B82381452000E296D3 /* HideShowPasswordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

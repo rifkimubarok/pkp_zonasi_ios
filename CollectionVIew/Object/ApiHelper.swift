@@ -12,7 +12,7 @@ class ApiHelper: NSObject {
 //    var EndPointAPI : String = "https://pkp.belajar.kemdikbud.go.id/"
     var EndPointAPI : String = "http://223.27.153.196/"
     var ServiceAPI : String = "moodle_mobile_app";
-
+    var urlforImage : String = "https://convertsvgpng.herokuapp.com/convert?url="
     var serviceTemp : String = "serviceAPIChacer";
     var EndPointTemp : String = "endAPIChacer";
 

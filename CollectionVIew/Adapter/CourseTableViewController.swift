@@ -46,7 +46,7 @@ class CourseTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        load_data_course(isRefresh: true)
+        load_data_course(isRefresh: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +71,8 @@ class CourseTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCourse", for: indexPath) as! CourseTableViewCell
         let course = course_data[indexPath.item]
         cell.CourseName.text = course.fullname
-        cell.bannerImage.sd_setImage(with: URL(string: course.courseimage), placeholderImage: UIImage(named: "no_image.png"))
+        let urlImage = apiHelper.urlforImage + course.courseimage
+        cell.bannerImage.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "no_image.png"))
         return cell
     }
     
@@ -129,7 +130,6 @@ class CourseTableViewController: UITableViewController {
                 return
             }
             guard let data = data else { return }
-            print("data course ",data)
             UserDefaults.standard.set(data, forKey: "course" + token)
             self.push_data(data: data)
         }
@@ -145,7 +145,6 @@ class CourseTableViewController: UITableViewController {
                         
                         for course in json.courses {
                             let cour = courseObj(json: course)
-                            print(course.id)
                             self.course_data.append(cour)
                         }
                         DispatchQueue.main.async {

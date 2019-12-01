@@ -16,6 +16,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
     var estimateWidth = 160.0
     var cellMarginSize = 16.0
     var Text : String = ""
+    var course_id : Int = -1
     var iconName = ["1","2","2","3","4","5","6","7","8","9","10"];
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +40,12 @@ class PembelajaranCollectionVC: UICollectionViewController {
     // MARK: NotificationCenter
     
     @objc func loadList(notification: NSNotification){
-        load_data_course(isRefresh: false)
+        
         let data = notification.userInfo
         guard let courseId = data!["courseId"] else { return }
-        get_data(CourseId: courseId as! Int)
+        self.course_id = courseId as! Int
+        load_data_course(isRefresh: false,CourseId: courseId as! Int)
+//        get_data(CourseId: courseId as! Int)
     }
 
     /*
@@ -80,8 +83,9 @@ class PembelajaranCollectionVC: UICollectionViewController {
         // Configure the cell
         cell.course_name.text = course.name
         cell.course_image.contentMode = .scaleAspectFit
-        cell.course_image.image = UIImage(named:iconName[indexPath.item])?.resizeImage(CGFloat(self.estimateWidth), opaque: false
-        )
+        if indexPath.item <= 10 {
+            cell.course_image.image = UIImage(named:iconName[indexPath.item])?.resizeImage(CGFloat(self.estimateWidth), opaque: false)
+        }
         return cell
     }
     
@@ -90,10 +94,42 @@ class PembelajaranCollectionVC: UICollectionViewController {
 //        }
     
     
+    // MARK: LOAD MODULE
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            let section = self.courseSectionObj[indexPath.item]
+            self.navigateToSection(module: section)
+        }
+    }
+    
+    
+    // MARK: navigate to detail
+
+    func navigateToSection(module: sectionObj) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "detailModule") as! VCModule
+        newViewController.moduleArr = module
+        self.show(newViewController, sender: .none)
+    }
+    
+    
+    
     // MARK: Get_data
     
-    func load_data_course(isRefresh : Bool) {
-        
+    func load_data_course(isRefresh : Bool, CourseId : Int) {
+        courseSectionObj.removeAll()
+        let token : String = UserDefaults.standard.string(forKey: "token") ?? ""
+        if isRefresh {
+            get_data(CourseId: CourseId)
+        }else{
+            let data = UserDefaults.standard.data(forKey: "sectionObj" + String(CourseId))
+            if data != nil {
+                push_data(data: data!)
+            }else{
+                get_data(CourseId: CourseId)
+            }
+        }
     }
     
     func get_data(CourseId : Int) {
@@ -105,7 +141,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
 //
 //        collectionView.reloadData()
         
-//        CustomDialog.instance.showLoaderView()
+        CustomDialog.instance.showLoaderView()
         var endPointApi : String = apiHelper.EndPointAPI
         let token : String = UserDefaults.standard.string(forKey: "token") ?? ""
         endPointApi += "webservice/rest/server.php?";
@@ -115,6 +151,11 @@ class PembelajaranCollectionVC: UICollectionViewController {
         
         let getData = URLSession.shared.dataTask(with: urlObj){
             (data,response,error) in
+            if(error != nil){
+                print("We got error");
+                CustomDialog.instance.hideLoaderView()
+                return
+            }
             guard let data = data else { return }
             UserDefaults.standard.data(forKey: "sectionObj"+String(CourseId))
             self.push_data(data: data)
@@ -132,10 +173,13 @@ class PembelajaranCollectionVC: UICollectionViewController {
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                CustomDialog.instance.hideLoaderView()
             }
             
         }catch let jsonErr{
             print(jsonErr)
+            self.creatAlert(title: "Error", message: "Terjadi Kesalahan")
+            CustomDialog.instance.hideLoaderView()
         }
     }
     
@@ -160,4 +204,14 @@ extension PembelajaranCollectionVC : UICollectionViewDelegateFlowLayout{
             
             return width
         }
+    
+    
+    // MARK: Creating Aler
+    func creatAlert(title: String, message: String){
+        let alertController = UIAlertController(title: title, message:
+            message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
