@@ -717,6 +717,7 @@
                                         </prototypes>
                                     </tableView>
                                 </subviews>
+                                <variation key="heightClass=compact" axis="horizontal"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -746,20 +747,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-gT-MzT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Sc-jAs">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem systemItem="refresh" id="ngw-AF-cnK"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Vn7-MG-ifo"/>
+                                    <barButtonItem systemItem="rewind" id="tUa-Ry-FGQ"/>
+                                    <barButtonItem systemItem="fastForward" id="6wH-Ov-eZe"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="E4X-nQ-1Ve" firstAttribute="trailing" secondItem="a6P-gT-MzT" secondAttribute="trailing" id="1zL-90-KgL"/>
-                            <constraint firstItem="a6P-gT-MzT" firstAttribute="leading" secondItem="E4X-nQ-1Ve" secondAttribute="leading" id="29Z-VJ-ajH"/>
-                            <constraint firstItem="a6P-gT-MzT" firstAttribute="top" secondItem="E4X-nQ-1Ve" secondAttribute="top" id="Lf5-bi-q2a"/>
-                            <constraint firstItem="E4X-nQ-1Ve" firstAttribute="bottom" secondItem="a6P-gT-MzT" secondAttribute="bottom" id="r26-yQ-4A4"/>
+                            <constraint firstItem="zj5-Sc-jAs" firstAttribute="top" secondItem="a6P-gT-MzT" secondAttribute="bottom" id="Fku-5h-AIi"/>
+                            <constraint firstItem="a6P-gT-MzT" firstAttribute="top" secondItem="E4X-nQ-1Ve" secondAttribute="top" id="eFo-Ky-jJC"/>
+                            <constraint firstItem="a6P-gT-MzT" firstAttribute="trailing" secondItem="E4X-nQ-1Ve" secondAttribute="trailing" id="hXI-mC-8ci"/>
+                            <constraint firstItem="E4X-nQ-1Ve" firstAttribute="bottom" secondItem="zj5-Sc-jAs" secondAttribute="bottom" id="pC8-oa-03V"/>
+                            <constraint firstItem="a6P-gT-MzT" firstAttribute="leading" secondItem="E4X-nQ-1Ve" secondAttribute="leading" id="q1X-0K-clo"/>
+                            <constraint firstItem="zj5-Sc-jAs" firstAttribute="leading" secondItem="CGt-pJ-mZr" secondAttribute="leading" id="rAF-Xu-HQf"/>
+                            <constraint firstItem="E4X-nQ-1Ve" firstAttribute="trailing" secondItem="zj5-Sc-jAs" secondAttribute="trailing" id="zJw-Ai-BA2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E4X-nQ-1Ve"/>
                     </view>
@@ -769,7 +782,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyK-eQ-2fX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5307" y="959"/>
+            <point key="canvasLocation" x="5305.7971014492759" y="958.92857142857133"/>
         </scene>
     </scenes>
     <resources>

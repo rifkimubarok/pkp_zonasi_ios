@@ -14,6 +14,8 @@ class VCWebActivity: UIViewController {
     var stringModule : String = ""
     let username = UserDefaults.standard.string(forKey: "username") ?? ""
     let password = UserDefaults.standard.string(forKey: "password") ?? ""
+    var titleNav : String = ""
+    let dialog = CustomDialog.instance
     @IBOutlet weak var webView: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,7 @@ class VCWebActivity: UIViewController {
         
         // Do any additional setup after loading the view.
         webView.load(URLRequest(url: URL(string: stringModule)!))
-        
+        navigationItem.title = self.titleNav
     }
     
 
@@ -40,7 +42,7 @@ class VCWebActivity: UIViewController {
 extension VCWebActivity : WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        print("Any cookies")
+        
       guard let response = navigationResponse.response as? HTTPURLResponse,
         let url = navigationResponse.response.url else {
         decisionHandler(.cancel)
@@ -59,6 +61,16 @@ extension VCWebActivity : WKNavigationDelegate {
       decisionHandler(.allow)
     }
     
+//    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+//        DispatchQueue.main.async {
+//            self.dialog.hideLoaderView()
+//        }
+//    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        dialog.showLoaderView()
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         guard let url = webView.url else {return}
         let urlString = url.absoluteString
@@ -73,6 +85,10 @@ extension VCWebActivity : WKNavigationDelegate {
                 }
             }
         }
-        
+        dialog.hideLoaderView()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        dialog.hideLoaderView()
     }
 }

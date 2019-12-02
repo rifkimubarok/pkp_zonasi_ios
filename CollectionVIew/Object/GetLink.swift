@@ -30,4 +30,21 @@ class GetLink {
             return []
         }
     }
+    
+    func fixedLink(text : String) -> String {
+        var summaryText : String = text
+        let token = UserDefaults.standard.string(forKey: "token")  ?? ""
+        let result = self.matches(for: "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", in: text)
+        for item in result {
+            let itemArr = item.split{$0 == "?"}.map(String.init)
+            var url : String = "";
+            if itemArr.count > 1 {
+                url = itemArr[0] + "?" + itemArr[1] + "&token=" + token;
+            }else{
+                url = item + "?token=" + token;
+            }
+            summaryText = summaryText.replacingOccurrences(of: item, with: url)
+        }
+        return summaryText
+    }
 }

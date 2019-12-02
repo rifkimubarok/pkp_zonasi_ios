@@ -21,23 +21,14 @@ class VCModule: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
+        webView.navigationDelegate = self
         // Do any additional setup after loading the view.
         navigationItem.title = moduleArr.name
-        var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"><style>img{width:100% !important;height:auto !important;}</style></HEAD><BODY>" + moduleArr.summary + "</BODY></HTML>"
-        let token = UserDefaults.standard.string(forKey: "token")  ?? ""
-        let result = getLink.matches(for: "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", in: summaryText)
-        for item in result {
-            let itemArr = item.split{$0 == "?"}.map(String.init)
-            var url : String = "";
-            if itemArr.count > 1 {
-                url = itemArr[0] + "?" + itemArr[1] + "&token=" + token;
-            }else{
-                url = item + "?token=" + token;
-            }
-            summaryText = summaryText.replacingOccurrences(of: item, with: url)
+        var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></HEAD><BODY>" + moduleArr.summary + "</BODY></HTML>"
+        DispatchQueue.main.async {
+            summaryText = self.getLink.fixedLink(text: summaryText)
+            self.webView.loadHTMLString(summaryText, baseURL: URL(string: self.apiHelper.EndPointAPI))
         }
-        webView.loadHTMLString(summaryText, baseURL: URL(string: apiHelper.EndPointAPI))
     }
     
 
@@ -84,11 +75,15 @@ extension VCModule : UITableViewDelegate, UITableViewDataSource{
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "webViewActivity") as! VCWebActivity
         newViewController.stringModule = module.url ?? ""
+        newViewController.titleNav = module.name 
         self.show(newViewController, sender: .none)
     }
     
 }
 
-extension VCModule : UIWebViewDelegate{
-    
+extension VCModule : WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        let jsString = "var style = document.createElement('style'); style.innerHTML = '\(WebCss.instance.homecss)'; document.head.appendChild(style);"
+        webView.evaluateJavaScript(jsString)
+    }
 }
