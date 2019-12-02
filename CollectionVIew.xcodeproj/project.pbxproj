@@ -27,6 +27,11 @@
 		807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807729C12381547500E296D3 /* ImageViewerViewController.swift */; };
 		807729C42381551E00E296D3 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807729C32381551E00E296D3 /* CustomLayout.swift */; };
 		80C956382394A6AC007000F8 /* WebCss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C956372394A6AC007000F8 /* WebCss.swift */; };
+		80CFC0812395125600CBF492 /* TokenMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFC0802395125600CBF492 /* TokenMaster.swift */; };
+		80CFC08323953DC900CBF492 /* ProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFC08223953DC900CBF492 /* ProfileHelper.swift */; };
+		80CFC0852395632200CBF492 /* VCModuleFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFC0842395632200CBF492 /* VCModuleFile.swift */; };
+		80CFC08823956C6D00CBF492 /* ModuleFileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFC08623956C6D00CBF492 /* ModuleFileCell.swift */; };
+		80CFC08923956C6D00CBF492 /* ModuleFileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80CFC08723956C6D00CBF492 /* ModuleFileCell.xib */; };
 		8B1B9387238D2CE000B24497 /* PembelajaranItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B9385238D2CE000B24497 /* PembelajaranItemCell.swift */; };
 		8B1B9388238D2CE000B24497 /* PembelajaranItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B9386238D2CE000B24497 /* PembelajaranItemCell.xib */; };
 		8B27A1372386A3220016A03D /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27A1362386A3220016A03D /* CourseTableViewCell.swift */; };
@@ -96,6 +101,11 @@
 		807729C12381547500E296D3 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		807729C32381551E00E296D3 /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
 		80C956372394A6AC007000F8 /* WebCss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCss.swift; sourceTree = "<group>"; };
+		80CFC0802395125600CBF492 /* TokenMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenMaster.swift; sourceTree = "<group>"; };
+		80CFC08223953DC900CBF492 /* ProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHelper.swift; sourceTree = "<group>"; };
+		80CFC0842395632200CBF492 /* VCModuleFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCModuleFile.swift; sourceTree = "<group>"; };
+		80CFC08623956C6D00CBF492 /* ModuleFileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFileCell.swift; sourceTree = "<group>"; };
+		80CFC08723956C6D00CBF492 /* ModuleFileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModuleFileCell.xib; sourceTree = "<group>"; };
 		8B1B9385238D2CE000B24497 /* PembelajaranItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PembelajaranItemCell.swift; sourceTree = "<group>"; };
 		8B1B9386238D2CE000B24497 /* PembelajaranItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PembelajaranItemCell.xib; sourceTree = "<group>"; };
 		8B27A1362386A3220016A03D /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
@@ -195,6 +205,7 @@
 				8B91A79623882C4400E4E369 /* VCDetailCourse.swift */,
 				8B71F5972392312400452C2B /* VCModule.swift */,
 				802584EC2394054B00F73F75 /* VCWebActivity.swift */,
+				80CFC0842395632200CBF492 /* VCModuleFile.swift */,
 			);
 			path = CollectionVIew;
 			sourceTree = "<group>";
@@ -247,6 +258,8 @@
 				8B1B9385238D2CE000B24497 /* PembelajaranItemCell.swift */,
 				8B1B9386238D2CE000B24497 /* PembelajaranItemCell.xib */,
 				8B71F595239230E300452C2B /* ModuleItemCell.swift */,
+				80CFC08623956C6D00CBF492 /* ModuleFileCell.swift */,
+				80CFC08723956C6D00CBF492 /* ModuleFileCell.xib */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -260,6 +273,8 @@
 				8BCCFA1D2384252900C8E931 /* GLAssetHandler.swift */,
 				8B33DEFC2387E83B003AEBE6 /* LoadImage.swift */,
 				8BCCF816238D3987007620BA /* UiImageResizer.swift */,
+				80CFC0802395125600CBF492 /* TokenMaster.swift */,
+				80CFC08223953DC900CBF492 /* ProfileHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -376,6 +391,7 @@
 			files = (
 				802E2035237E8AD9008D7FBF /* LaunchScreen.storyboard in Resources */,
 				807729C02381535600E296D3 /* ItemCollectionViewCell.xib in Resources */,
+				80CFC08923956C6D00CBF492 /* ModuleFileCell.xib in Resources */,
 				8BCCFA182383FBD900C8E931 /* demo.gif in Resources */,
 				802E2032237E8AD9008D7FBF /* Assets.xcassets in Resources */,
 				8B1B9388238D2CE000B24497 /* PembelajaranItemCell.xib in Resources */,
@@ -404,7 +420,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80CFC0812395125600CBF492 /* TokenMaster.swift in Sources */,
 				8B60EA9B238207B800918115 /* Course.swift in Sources */,
+				80CFC0852395632200CBF492 /* VCModuleFile.swift in Sources */,
 				8BCCFA162383BACF00C8E931 /* ImageView.swift in Sources */,
 				80378069238122F200D2C8F1 /* Swither.swift in Sources */,
 				807729BA2381454800E296D3 /* PasswordToggleVisibilityView.swift in Sources */,
@@ -421,11 +439,13 @@
 				8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */,
 				8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */,
 				807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */,
+				80CFC08823956C6D00CBF492 /* ModuleFileCell.swift in Sources */,
 				8B71F5982392312400452C2B /* VCModule.swift in Sources */,
 				802E202D237E8AD8008D7FBF /* VCLogin.swift in Sources */,
 				807729C42381551E00E296D3 /* CustomLayout.swift in Sources */,
 				80C956382394A6AC007000F8 /* WebCss.swift in Sources */,
 				807729BF2381535600E296D3 /* ItemCollectionViewCell.swift in Sources */,
+				80CFC08323953DC900CBF492 /* ProfileHelper.swift in Sources */,
 				8BCCFA1C2384133200C8E931 /* WKLoginSSO.swift in Sources */,
 				8BCCFA1223839C4200C8E931 /* ApiHelper.swift in Sources */,
 				8B3928C32393F242003BA383 /* GetLink.swift in Sources */,

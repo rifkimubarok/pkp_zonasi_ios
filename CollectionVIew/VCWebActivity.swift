@@ -37,6 +37,20 @@ class VCWebActivity: UIViewController {
     }
     */
 
+    @IBAction func goBack(_ sender: UIBarButtonItem) {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+    }
+    
+    @IBAction func goForward(_ sender: Any) {
+        if webView.canGoForward {
+            webView.goForward()
+        }
+    }
+    @IBAction func reload(_ sender: Any) {
+        webView.reload()
+    }
 }
 
 extension VCWebActivity : WKNavigationDelegate {
@@ -61,14 +75,22 @@ extension VCWebActivity : WKNavigationDelegate {
       decisionHandler(.allow)
     }
     
-//    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-//        DispatchQueue.main.async {
-//            self.dialog.hideLoaderView()
-//        }
-//    }
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+       guard let url = webView.url else {return}
+        let urlString = url.absoluteString
+        if urlString.contains("login") {
+            webView.isHidden = true
+        }
+    }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         dialog.showLoaderView()
+        
+        guard let url = webView.url else {return}
+        let urlString = url.absoluteString
+        if urlString.contains("login") {
+            webView.isHidden = true
+        }
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
@@ -84,7 +106,10 @@ extension VCWebActivity : WKNavigationDelegate {
                 DispatchQueue.main.async { webView.evaluateJavaScript("document.forms[0].submit();")
                 }
             }
+        }else{
+            webView.isHidden = false
         }
+        
         dialog.hideLoaderView()
     }
     

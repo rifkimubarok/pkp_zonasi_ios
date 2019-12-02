@@ -20,15 +20,25 @@ class Course: NSObject {
     }
 }
 
+struct contentObj : Decodable {
+    let type : String?
+    let filename : String?
+    let filepath : String?
+    let filesize : Int?
+    let fileurl : String?
+    let mimetype : String?
+}
+
 struct moduleObj : Decodable {
     let id : Int
     let name : String
     let instance : Int
     let url : String?
-//    let description : String 
+    let description : String?
     let modicon : String
     let modname : String
     let indent : Int
+    let contents : [contentObj]?
 }
 
 

@@ -17,7 +17,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
     var cellMarginSize = 16.0
     var Text : String = ""
     var course_id : Int = -1
-    var iconName = ["1","2","2","3","4","5","6","7","8","9","10"];
+    var iconName = ["1","2","2","3","4","5","6","7","8","9","10","1"];
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let collectionViewLayout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
@@ -83,7 +83,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
         // Configure the cell
         cell.course_name.text = course.name
         cell.course_image.contentMode = .scaleAspectFit
-        if indexPath.item <= 10 {
+        if indexPath.item <= (iconName.count - 1) {
             cell.course_image.image = UIImage(named:iconName[indexPath.item])?.resizeImage(CGFloat(self.estimateWidth), opaque: false)
         }
         return cell

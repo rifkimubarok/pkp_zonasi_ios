@@ -57,6 +57,10 @@ extension VCModule : UITableViewDelegate, UITableViewDataSource{
         let urlImage = apiHelper.urlforImage + module.modicon
         cell.module_image.sd_setImage(with: URL(string: urlImage))
         cell.module_name.text = module.name
+        if module.modname == "label" {
+            cell.accessoryType = .none
+            cell.clipsToBounds = true
+        }
         return cell
     }
     
@@ -66,9 +70,21 @@ extension VCModule : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let module = self.moduleArr.modules[indexPath.item]
-        DispatchQueue.main.async {
-            self.navigateToSection(module: module)
+        print("Ini module yang dipilih ",module.modname)
+        if module.modname == "label" {
+            return
         }
+        if module.modname == "folder" {
+            DispatchQueue.main.async {
+                self.navigateToFolder(module: module)
+            }
+            return
+        }else{
+            DispatchQueue.main.async {
+                self.navigateToSection(module: module)
+            }
+        }
+        
     }
     
     func navigateToSection(module : moduleObj) {
@@ -76,6 +92,14 @@ extension VCModule : UITableViewDelegate, UITableViewDataSource{
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "webViewActivity") as! VCWebActivity
         newViewController.stringModule = module.url ?? ""
         newViewController.titleNav = module.name 
+        self.show(newViewController, sender: .none)
+    }
+    
+    func navigateToFolder(module : moduleObj) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "moduleFile") as! VCModuleFile
+        newViewController.content = module.contents
+        newViewController.title = module.name
         self.show(newViewController, sender: .none)
     }
     

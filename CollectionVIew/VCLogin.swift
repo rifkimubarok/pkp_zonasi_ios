@@ -24,7 +24,9 @@ struct Token : Decodable {
 
 class VCLogin: UIViewController,UINavigationControllerDelegate {
     
+    
     @IBOutlet weak var txtUser: UITextField!
+  
     @IBOutlet weak var txtPassword: HideShowPasswordTextField!
     @IBOutlet weak var lblValidasi: UILabel!
     var activityIndicator:UIActivityIndicatorView = UIActivityIndicatorView()
@@ -33,7 +35,7 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
         super.viewDidLoad()
         lblValidasi.isHidden = true
         // Do any additional setup after loading the view.
-        
+        txtPassword.isSecureTextEntry = true
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
@@ -64,46 +66,49 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
     }
     
     @IBAction func btnActionLogin(_ sender: Any) {
-        
-        guard let _ = txtUser.text, txtUser.text?.count != 0 else {
-            lblValidasi.isHidden = false
-            lblValidasi.text = "User Tidak boleh Kosong!"
-            return
-        }
-        
-        guard let _ = txtPassword.text, txtPassword.text?.count != 0 else {
-            lblValidasi.isHidden = false
-            lblValidasi.text = "Password Tidak boleh Kosong!"
-            return
-        }
-        lblValidasi.isHidden = true
-        
-//        let lock = NSLock()
-        let dialog = CustomDialog.instance
-        dialog.showLoaderView()
-        checkUser_by_password(){status,json,error in
-            DispatchQueue.main.async {
-                dialog.hideLoaderView()
-                if status! {
-//                    var urlString : String = self.apiHelper.EndPointAPI
-//                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
-//                    guard let url = URL(string: urlString) else { return }
-                    //Login via safari web browser
-//                    UIApplication.shared.open(url)
-                    //login via webkit view
-//                    self.navigateLoginSimpkb()
-                    UserDefaults.standard.set(true, forKey: "status")
-                    Switcher.updateRootVC()
-                }else{
-                    self.creatAlert(message: "Username/Password Salah!")
+
+                guard let _ = txtUser.text, txtUser.text?.count != 0 else {
+                    lblValidasi.isHidden = false
+                    lblValidasi.text = "User Tidak boleh Kosong!"
+                    return
                 }
-            }
-            
-        }
-            
-//        UserDefaults.standard.set(true, forKey: "status")
-//        Switcher.updateRootVC()
+                
+                guard let _ = txtPassword.text, txtPassword.text?.count != 0 else {
+                    lblValidasi.isHidden = false
+                    lblValidasi.text = "Password Tidak boleh Kosong!"
+                    return
+                }
+                lblValidasi.isHidden = true
+                
+        //        let lock = NSLock()
+                let dialog = CustomDialog.instance
+                dialog.showLoaderView()
+                checkUser_by_password(){status,json,error in
+                    DispatchQueue.main.async {
+                        dialog.hideLoaderView()
+                        if status! {
+        //                    var urlString : String = self.apiHelper.EndPointAPI
+        //                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+        //                    guard let url = URL(string: urlString) else { return }
+                            //Login via safari web browser
+        //                    UIApplication.shared.open(url)
+                            //login via webkit view
+        //                    self.navigateLoginSimpkb()
+                            UserDefaults.standard.set(true, forKey: "status")
+                            Switcher.updateRootVC()
+                        }else{
+                            self.creatAlert(message: "Username/Password Salah!")
+                        }
+                    }
+                    
+                }
     }
+//    @IBAction func btnActionLogin(_ sender: Any) {
+//
+//
+////        UserDefaults.standard.set(true, forKey: "status")
+////        Switcher.updateRootVC()
+//    }
     // MARK: Login
     func checkUser(completion: @escaping (_ status : Bool?, _ json: Any?, _ error: Error?)->()){
         let username : String = txtUser.text!
