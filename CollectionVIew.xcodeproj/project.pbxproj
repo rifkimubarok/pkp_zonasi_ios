@@ -26,6 +26,8 @@
 		807729C02381535600E296D3 /* ItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807729BE2381535600E296D3 /* ItemCollectionViewCell.xib */; };
 		807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807729C12381547500E296D3 /* ImageViewerViewController.swift */; };
 		807729C42381551E00E296D3 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807729C32381551E00E296D3 /* CustomLayout.swift */; };
+		80A8B55623961BBE00B3A703 /* VCHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8B55523961BBE00B3A703 /* VCHeaderCollectionView.swift */; };
+		80A8B558239623AA00B3A703 /* HeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A8B557239623AA00B3A703 /* HeaderItem.swift */; };
 		80C956382394A6AC007000F8 /* WebCss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C956372394A6AC007000F8 /* WebCss.swift */; };
 		80CFC0812395125600CBF492 /* TokenMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFC0802395125600CBF492 /* TokenMaster.swift */; };
 		80CFC08323953DC900CBF492 /* ProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFC08223953DC900CBF492 /* ProfileHelper.swift */; };
@@ -100,6 +102,8 @@
 		807729BE2381535600E296D3 /* ItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		807729C12381547500E296D3 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		807729C32381551E00E296D3 /* CustomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayout.swift; sourceTree = "<group>"; };
+		80A8B55523961BBE00B3A703 /* VCHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderCollectionView.swift; sourceTree = "<group>"; };
+		80A8B557239623AA00B3A703 /* HeaderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderItem.swift; sourceTree = "<group>"; };
 		80C956372394A6AC007000F8 /* WebCss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCss.swift; sourceTree = "<group>"; };
 		80CFC0802395125600CBF492 /* TokenMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenMaster.swift; sourceTree = "<group>"; };
 		80CFC08223953DC900CBF492 /* ProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHelper.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				8B71F5972392312400452C2B /* VCModule.swift */,
 				802584EC2394054B00F73F75 /* VCWebActivity.swift */,
 				80CFC0842395632200CBF492 /* VCModuleFile.swift */,
+				80A8B55523961BBE00B3A703 /* VCHeaderCollectionView.swift */,
 			);
 			path = CollectionVIew;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				8B71F595239230E300452C2B /* ModuleItemCell.swift */,
 				80CFC08623956C6D00CBF492 /* ModuleFileCell.swift */,
 				80CFC08723956C6D00CBF492 /* ModuleFileCell.xib */,
+				80A8B557239623AA00B3A703 /* HeaderItem.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				8B27A1392386A34B0016A03D /* CourseTableViewController.swift in Sources */,
 				8B33DEFD2387E83B003AEBE6 /* LoadImage.swift in Sources */,
 				807729C22381547500E296D3 /* ImageViewerViewController.swift in Sources */,
+				80A8B558239623AA00B3A703 /* HeaderItem.swift in Sources */,
 				80CFC08823956C6D00CBF492 /* ModuleFileCell.swift in Sources */,
 				8B71F5982392312400452C2B /* VCModule.swift in Sources */,
 				802E202D237E8AD8008D7FBF /* VCLogin.swift in Sources */,
@@ -454,6 +461,7 @@
 				8BCCFA1E2384252900C8E931 /* GLAssetHandler.swift in Sources */,
 				802E202B237E8AD8008D7FBF /* AppDelegate.swift in Sources */,
 				807729BC23814D6200E296D3 /* ShowTextField.swift in Sources */,
+				80A8B55623961BBE00B3A703 /* VCHeaderCollectionView.swift in Sources */,
 				8B60EA9E2382086700918115 /* PembelajaranCollectionVC.swift in Sources */,
 				8BCCFA142383B91F00C8E931 /* CustomDialog.swift in Sources */,
 				8B71F596239230E300452C2B /* ModuleItemCell.swift in Sources */,

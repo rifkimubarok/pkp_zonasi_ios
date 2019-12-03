@@ -70,11 +70,10 @@ extension VCModule : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let module = self.moduleArr.modules[indexPath.item]
-        print("Ini module yang dipilih ",module.modname)
         if module.modname == "label" {
             return
         }
-        if module.modname == "folder" {
+        if module.modname == "folder" || module.modname == "resource" {
             DispatchQueue.main.async {
                 self.navigateToFolder(module: module)
             }

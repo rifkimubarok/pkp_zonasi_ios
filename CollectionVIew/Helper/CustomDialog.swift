@@ -43,8 +43,8 @@ class CustomDialog: UIView {
     }
     
     func hideLoaderView() {
+        UIApplication.shared.endIgnoringInteractionEvents()
         self.transparentView.removeFromSuperview()
-        UIApplication.shared.endIgnoringInteractionEvents() 
     }
     
 }

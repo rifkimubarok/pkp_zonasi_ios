@@ -13,6 +13,7 @@ private let reuseIdentifier = "CourseItem"
 class PembelajaranCollectionVC: UICollectionViewController {
     var courseSectionObj = [sectionObj]()
     var apiHelper = ApiHelper()
+    var getLink = GetLink()
     var estimateWidth = 160.0
     var cellMarginSize = 16.0
     var Text : String = ""
@@ -67,6 +68,21 @@ class PembelajaranCollectionVC: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderPembelajaran", for: indexPath) as! HeaderItem
+            if courseSectionObj.count > 0 {
+                let moduleArr = courseSectionObj[indexPath.item]
+                            var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></HEAD><BODY>" + moduleArr.summary + "</BODY></HTML>"
+                                summaryText = self.getLink.fixedLink(text: summaryText)
+                                view.webView.loadHTMLString(summaryText, baseURL: URL(string: self.apiHelper.EndPointAPI))
+            }
+            return view
+        }
+        fatalError("Unexpected kind")
     }
 
     // init banyaknya course

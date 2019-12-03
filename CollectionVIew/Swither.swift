@@ -24,7 +24,9 @@ class Switcher {
 //                   appDelegate.window?.rootViewController?.show(rootVC!, sender: nil)
         }
         else{
+            
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "vclogin") as! VCLogin
+//            rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VCHeaderCVC") as! VCHeaderCollectionView
         }
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

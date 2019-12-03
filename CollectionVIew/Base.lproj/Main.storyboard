@@ -708,10 +708,10 @@
             </objects>
             <point key="canvasLocation" x="2596" y="102"/>
         </scene>
-        <!--Detail Course-->
+        <!--Aktivitas-->
         <scene sceneID="3PY-JB-Jx5">
             <objects>
-                <viewController restorationIdentifier="detailCourse" storyboardIdentifier="detailCourse" id="3Ji-eI-aj4" customClass="VCDetailCourse" customModule="PKP_Zonasi" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="detailCourse" storyboardIdentifier="detailCourse" title="Aktivitas" id="3Ji-eI-aj4" customClass="VCDetailCourse" customModule="PKP_Zonasi" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NDv-01-D1E">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -750,13 +750,13 @@
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uet-nt-cBA">
                             <size key="itemSize" width="100" height="100"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="178"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Course" id="3Mh-sK-EpU" customClass="PembelajaranItemCell" customModule="PKP_Zonasi" customModuleProvider="target">
-                                <rect key="frame" x="16" y="16" width="144" height="125"/>
+                                <rect key="frame" x="16" y="194" width="144" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="amQ-1f-9Zk">
                                     <rect key="frame" x="0.0" y="0.0" width="144" height="125"/>
@@ -765,6 +765,29 @@
                                 <size key="customSize" width="144" height="125"/>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderPembelajaran" id="JGN-U5-Qb5" customClass="HeaderItem" customModule="PKP_Zonasi" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="178"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wuF-V2-sy6">
+                                    <rect key="frame" x="13" y="13" width="388" height="152"/>
+                                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <wkWebViewConfiguration key="configuration">
+                                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                        <wkPreferences key="preferences"/>
+                                    </wkWebViewConfiguration>
+                                </wkWebView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="wuF-V2-sy6" firstAttribute="top" secondItem="JGN-U5-Qb5" secondAttribute="topMargin" constant="5" id="Eds-OS-KgK"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="wuF-V2-sy6" secondAttribute="bottom" constant="5" id="PYS-mJ-Ndq"/>
+                                <constraint firstItem="wuF-V2-sy6" firstAttribute="leading" secondItem="JGN-U5-Qb5" secondAttribute="leadingMargin" constant="5" id="SBp-dT-HSl"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="wuF-V2-sy6" secondAttribute="trailing" constant="5" id="iAa-8D-siz"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="webView" destination="wuF-V2-sy6" id="h6R-6t-tr9"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="uwP-iN-hRv" id="25W-NF-h76"/>
                             <outlet property="delegate" destination="uwP-iN-hRv" id="PEi-aw-rWL"/>
@@ -773,7 +796,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EbQ-we-1mf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5054" y="102"/>
+            <point key="canvasLocation" x="5053.6231884057979" y="101.78571428571428"/>
         </scene>
         <!--TabBarVC-->
         <scene sceneID="dtD-5z-XMs">
@@ -808,7 +831,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="RCd-C2-cI4" kind="relationship" relationship="rootViewController" id="NZz-wD-cBo"/>
+                        <segue destination="RCd-C2-cI4" kind="relationship" relationship="rootViewController" id="ypv-89-vmn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJm-wq-kWI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1009,6 +1032,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyK-eQ-2fX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6545" y="129"/>
+        </scene>
+        <!--VCHeaderCVC-->
+        <scene sceneID="I6X-B1-BZG">
+            <objects>
+                <viewController storyboardIdentifier="VCHeaderCVC" title="VCHeaderCVC" id="KH8-FB-d1C" customClass="VCHeaderCollectionView" customModule="PKP_Zonasi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J2h-2Z-35D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zSu-Tb-6Nc">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="scrollIndicatorInsets" minX="5" minY="10" maxX="0.0" maxY="10"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZOu-5H-KrY">
+                                    <size key="itemSize" width="90" height="90"/>
+                                    <size key="headerReferenceSize" width="0.0" height="200"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Kuo-La-lB7">
+                                        <rect key="frame" x="16" y="216" width="90" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5cq-dn-Fco">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="90" height="90"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="headerCollection" reuseIdentifier="headerCollection" id="zfB-f7-LDr">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGa-oH-Img">
+                                            <rect key="frame" x="38" y="18" width="338" height="164"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="UGa-oH-Img" firstAttribute="top" secondItem="zfB-f7-LDr" secondAttribute="topMargin" constant="10" id="1hj-eh-R5a"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="UGa-oH-Img" secondAttribute="trailing" constant="30" id="SXo-f0-tUT"/>
+                                        <constraint firstItem="UGa-oH-Img" firstAttribute="leading" secondItem="zfB-f7-LDr" secondAttribute="leadingMargin" constant="30" id="Z9q-PO-PGg"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="UGa-oH-Img" secondAttribute="bottom" constant="10" id="cIV-hv-evn"/>
+                                    </constraints>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zSu-Tb-6Nc" firstAttribute="leading" secondItem="q5z-Cw-Ti9" secondAttribute="leading" id="G45-TC-ESv"/>
+                            <constraint firstItem="q5z-Cw-Ti9" firstAttribute="bottom" secondItem="zSu-Tb-6Nc" secondAttribute="bottom" id="cFE-zU-Ts1"/>
+                            <constraint firstItem="q5z-Cw-Ti9" firstAttribute="trailing" secondItem="zSu-Tb-6Nc" secondAttribute="trailing" id="d3o-Lu-sRM"/>
+                            <constraint firstItem="zSu-Tb-6Nc" firstAttribute="top" secondItem="q5z-Cw-Ti9" secondAttribute="top" id="mcY-jF-Ay6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q5z-Cw-Ti9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZN6-wS-7Jh"/>
+                    <connections>
+                        <outlet property="collectionView" destination="zSu-Tb-6Nc" id="ACN-32-CFv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R04-ac-Q5P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-230" y="-618"/>
         </scene>
     </scenes>
     <resources>

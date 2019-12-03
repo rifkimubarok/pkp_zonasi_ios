@@ -16,7 +16,7 @@ class VCDetailCourse: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationItem.title = "Aktifitas"
+        self.navigationItem.title = "Aktivitas"
 //        guard let childVC = self.storyboard?.instantiateViewController(withIdentifier: "detailCourse") as? PembelajaranCollectionVC else { return }
 //        childVC.Text = "Hi Tayo"
 //        ContainerAktifitas.addSubview(childVC.view)
