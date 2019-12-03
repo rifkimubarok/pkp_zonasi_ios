@@ -21,6 +21,7 @@ class CustomDialog: UIView {
         let transparentView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         transparentView.backgroundColor = viewColor.withAlphaComponent(setAlpha)
         transparentView.isUserInteractionEnabled = false
+        transparentView.clipsToBounds = true
         return transparentView
     }()
     
@@ -38,11 +39,12 @@ class CustomDialog: UIView {
         self.transparentView.addSubview(self.gifImage)
         self.transparentView.bringSubviewToFront(self.gifImage)
         UIApplication.shared.keyWindow?.addSubview(transparentView)
-        
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
     
     func hideLoaderView() {
         self.transparentView.removeFromSuperview()
+        UIApplication.shared.endIgnoringInteractionEvents() 
     }
     
 }

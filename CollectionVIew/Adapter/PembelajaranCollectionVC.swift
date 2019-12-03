@@ -28,7 +28,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationItem.title = "Aktifitas"
+        self.navigationItem.title = "Aktivitas"
         self.setupGridView()
         // Do any additional setup after loading the view.
         
