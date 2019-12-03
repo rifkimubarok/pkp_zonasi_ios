@@ -218,7 +218,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Notifikasi" translatesAutoresizingMaskIntoConstraints="NO" id="jIR-8R-rcL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Notifikasi-off" translatesAutoresizingMaskIntoConstraints="NO" id="jIR-8R-rcL">
                                 <rect key="frame" x="179.5" y="423.5" width="55" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="4x7-IK-O2c"/>
@@ -645,7 +645,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DNO-Lm-vdK"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Profile" id="Wdg-8I-ZJg"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="Profile-Box" id="Wdg-8I-ZJg"/>
                     <connections>
                         <outlet property="fullname" destination="3np-Zp-QCI" id="TaD-0e-1Op"/>
                         <outlet property="jenis_kelamin" destination="PvF-0k-vAX" id="xW9-iR-HtO"/>
@@ -696,7 +696,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XdC-YF-GFv"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Pembelajaran" image="Belajar" id="izd-wl-KJD"/>
+                    <tabBarItem key="tabBarItem" title="Pembelajaran" image="Learning" id="izd-wl-KJD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d4b-aJ-s1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="jEW-jF-U0I">
@@ -1104,11 +1104,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Belajar" width="23" height="23"/>
-        <image name="Kegiatan" width="24" height="23"/>
+        <image name="Kegiatan" width="24" height="24"/>
+        <image name="Learning" width="29" height="29"/>
         <image name="Logo-Kemdikbud-White" width="290" height="287"/>
-        <image name="Notifikasi" width="23" height="23"/>
+        <image name="Notifikasi" width="24" height="24"/>
+        <image name="Notifikasi-off" width="24" height="24"/>
         <image name="Profile" width="34" height="22.5"/>
+        <image name="Profile-Box" width="24" height="24"/>
         <image name="QuickActions_Bookmark_2x" width="48" height="45"/>
         <image name="QuickActions_Confirmation_2x" width="54" height="54"/>
         <image name="QuickActions_Date_2x" width="50" height="50"/>
