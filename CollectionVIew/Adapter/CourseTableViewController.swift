@@ -72,7 +72,9 @@ class CourseTableViewController: UITableViewController {
         let course = course_data[indexPath.item]
         cell.CourseName.text = course.fullname
         let urlImage = apiHelper.urlforImage + course.courseimage
-        cell.bannerImage.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "no_image.png"))
+        cell.bannerImage.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "Logo-PKP"))
+        cell.bannerImage.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - cell.CourseName.frame.height)
+        cell.bannerImage.clipsToBounds = true
         return cell
     }
     
@@ -81,6 +83,10 @@ class CourseTableViewController: UITableViewController {
             let course = self.course_data[indexPath.item]
             self.navigateToSection(course_id: course.id)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.width * 0.35	
     }
     
     // MARK: navigate to detail

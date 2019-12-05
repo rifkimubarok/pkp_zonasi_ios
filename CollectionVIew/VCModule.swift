@@ -29,6 +29,7 @@ class VCModule: UIViewController {
             summaryText = self.getLink.fixedLink(text: summaryText)
             self.webView.loadHTMLString(summaryText, baseURL: URL(string: self.apiHelper.EndPointAPI))
         }
+        
     }
     
 

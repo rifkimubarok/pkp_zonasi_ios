@@ -96,11 +96,12 @@ class ProfileHelper {
         let token = UserDefaults.standard.string(forKey: "token")!
         var url : String = "\(apiHelper.EndPointAPI)webservice/rest/server.php?wstoken=\(token)&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json"
         
-        let username = UserDefaults.standard.string(forKey: "username")!.lowercased()
+        guard let username : String = UserDefaults.standard.string(forKey: "username")! else {return}
+        print("Ini usernamenya " , username)
         if username.isValidEmail {
-            url = url + "&field=email&values[0]=\(username)"
+            url = url + "&field=email&values[0]=\(username.lowercased())"
         }else{
-            url = url + "&field=username&values[0]=\(username)"
+            url = url + "&field=username&values[0]=\(username.lowercased())"
         }
         print(url)
         let urlObj = URL(string: url)

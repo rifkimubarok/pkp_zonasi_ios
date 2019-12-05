@@ -12,6 +12,7 @@ private let reuseIdentifier = "CourseItem"
 
 class PembelajaranCollectionVC: UICollectionViewController {
     var courseSectionObj = [sectionObj]()
+    var headerSectionOb : sectionObj?
     var apiHelper = ApiHelper()
     var getLink = GetLink()
     var estimateWidth = 160.0
@@ -19,12 +20,20 @@ class PembelajaranCollectionVC: UICollectionViewController {
     var Text : String = ""
     var course_id : Int = -1
     var iconName = ["1","2","2","3","4","5","6","7","8","9","10","1"];
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let collectionViewLayout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
 //        collectionViewLayout.itemSize = UICollectionViewFlowLayout.automaticSize
 //        collectionViewLayout.estimatedItemSize = CGSize(width : 175, height: 150)
         self.collectionView.register(UINib(nibName: "PembelajaranItemCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier);
+//        
+//        self.tableView.register(UINib(nibName: "ModuleFileCell", bundle: nil), forCellReuseIdentifier: "headerModuleList")
+//        
+//        self.tableView.delegate = self
+//        self.tableView.dataSource = self
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -83,6 +92,10 @@ class PembelajaranCollectionVC: UICollectionViewController {
             return view
         }
         fatalError("Unexpected kind")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: self.view.frame.width * 0.65)
     }
 
     // init banyaknya course
@@ -183,9 +196,14 @@ class PembelajaranCollectionVC: UICollectionViewController {
 
         do{
             let json = try JSONDecoder().decode([sectionObj].self, from: data)
+            var numIndex = 0
             for course in json {
-                courseSectionObj.append(course)
-                print(course.name)
+                if numIndex == 0 {
+                    headerSectionOb = course
+                }else{
+                    courseSectionObj.append(course)
+                }
+                numIndex = numIndex + 1
             }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -231,3 +249,19 @@ extension PembelajaranCollectionVC : UICollectionViewDelegateFlowLayout{
         self.present(alertController, animated: true, completion: nil)
     }
 }
+//
+//extension PembelajaranCollectionVC : UITableViewDelegate,UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 0
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let headerCell = tableView.dequeueReusableCell(withIdentifier: "FileItemCell", for: indexPath) as! ModuleFileCell
+//        return headerCell
+//    }
+//
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+//}
