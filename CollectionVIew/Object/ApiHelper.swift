@@ -26,5 +26,5 @@ class ApiHelper: NSObject {
     let client_secret : String = "gtkgp0";
     let grant_type : String = "client_credentials";
     let scope : String = "read";
-    
+    //Scoupe
 }
