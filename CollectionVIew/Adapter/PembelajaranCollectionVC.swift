@@ -19,7 +19,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
     var cellMarginSize = 16.0
     var Text : String = ""
     var course_id : Int = -1
-    var iconName = ["1","2","2","3","4","5","6","7","8","9","10","1"];
+    var iconName = ["2","2","3","4","5","6","7","8","9","10","1"];
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,10 +30,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
 //        collectionViewLayout.estimatedItemSize = CGSize(width : 175, height: 150)
         self.collectionView.register(UINib(nibName: "PembelajaranItemCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier);
 //        
-//        self.tableView.register(UINib(nibName: "ModuleFileCell", bundle: nil), forCellReuseIdentifier: "headerModuleList")
-//        
-//        self.tableView.delegate = self
-//        self.tableView.dataSource = self
+//        self.tableView.register(UINib(nibName: "ModuleFileCell", bundle: nil), forCellReuseIdentifier: "headerModuleItem")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -79,24 +76,24 @@ class PembelajaranCollectionVC: UICollectionViewController {
         return 1
     }
     
-    
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderPembelajaran", for: indexPath) as! HeaderItem
-            if courseSectionObj.count > 0 {
-                let moduleArr = courseSectionObj[indexPath.item]
-                            var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></HEAD><BODY>" + moduleArr.summary + "</BODY></HTML>"
-                                summaryText = self.getLink.fixedLink(text: summaryText)
-                                view.webView.loadHTMLString(summaryText, baseURL: URL(string: self.apiHelper.EndPointAPI))
-            }
-            return view
-        }
-        fatalError("Unexpected kind")
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: self.view.frame.width * 0.65)
-    }
+//    
+//    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        if kind == UICollectionView.elementKindSectionHeader {
+//            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderPembelajaran", for: indexPath) as! HeaderItem
+//            if headerSectionOb != nil  {
+//                let moduleArr = headerSectionOb
+//                var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></HEAD><BODY>" + moduleArr!.summary + "</BODY></HTML>"
+//                                summaryText = self.getLink.fixedLink(text: summaryText)
+//                                view.webView.loadHTMLString(summaryText, baseURL: URL(string: self.apiHelper.EndPointAPI))
+//            }
+//            return view
+//        }
+//        fatalError("Unexpected kind")
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: self.view.frame.width, height: self.view.frame.width * 0.35)
+//    }
 
     // init banyaknya course
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -209,6 +206,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
                 self.collectionView.reloadData()
                 CustomDialog.instance.hideLoaderView()
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHeader"), object: nil,userInfo: ["section" : headerSectionOb!])
             
         }catch let jsonErr{
             print(jsonErr)

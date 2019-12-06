@@ -13,6 +13,7 @@ class VCDetailCourse: UIViewController{
 
     var course_id : Int = -1;
     @IBOutlet weak var ContainerAktifitas: UIView!
+    @IBOutlet weak var HeaderItem: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -21,6 +22,7 @@ class VCDetailCourse: UIViewController{
 //        childVC.Text = "Hi Tayo"
 //        ContainerAktifitas.addSubview(childVC.view)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil,userInfo: ["courseId" : course_id])
+        
     }
     
 
@@ -35,7 +37,7 @@ class VCDetailCourse: UIViewController{
     */
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("Hi Tayo")
+        
     }
 
 }

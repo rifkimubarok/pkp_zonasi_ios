@@ -92,6 +92,7 @@ extension URL {
 }
 
 extension VCModuleFile : UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content!.count
     }

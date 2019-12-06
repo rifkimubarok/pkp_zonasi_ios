@@ -15,6 +15,7 @@
 		802E2035237E8AD9008D7FBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 802E2033237E8AD9008D7FBF /* LaunchScreen.storyboard */; };
 		802E2040237E8ADA008D7FBF /* CollectionVIewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802E203F237E8ADA008D7FBF /* CollectionVIewTests.swift */; };
 		802E204B237E8ADA008D7FBF /* CollectionVIewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802E204A237E8ADA008D7FBF /* CollectionVIewUITests.swift */; };
+		803038A623993607003D1DD0 /* VCHeaderPembelajaran.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803038A523993607003D1DD0 /* VCHeaderPembelajaran.swift */; };
 		80378069238122F200D2C8F1 /* Swither.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80378068238122F200D2C8F1 /* Swither.swift */; };
 		8037806B2381247700D2C8F1 /* VCPembelajaran.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8037806A2381247700D2C8F1 /* VCPembelajaran.swift */; };
 		8037806D238125AD00D2C8F1 /* VCProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8037806C238125AD00D2C8F1 /* VCProfile.swift */; };
@@ -91,6 +92,7 @@
 		802E2046237E8ADA008D7FBF /* CollectionVIewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollectionVIewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		802E204A237E8ADA008D7FBF /* CollectionVIewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVIewUITests.swift; sourceTree = "<group>"; };
 		802E204C237E8ADA008D7FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		803038A523993607003D1DD0 /* VCHeaderPembelajaran.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCHeaderPembelajaran.swift; sourceTree = "<group>"; };
 		80378068238122F200D2C8F1 /* Swither.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swither.swift; sourceTree = "<group>"; };
 		8037806A2381247700D2C8F1 /* VCPembelajaran.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCPembelajaran.swift; sourceTree = "<group>"; };
 		8037806C238125AD00D2C8F1 /* VCProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCProfile.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				80CFC08623956C6D00CBF492 /* ModuleFileCell.swift */,
 				80CFC08723956C6D00CBF492 /* ModuleFileCell.xib */,
 				80A8B557239623AA00B3A703 /* HeaderItem.swift */,
+				803038A523993607003D1DD0 /* VCHeaderPembelajaran.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				80378069238122F200D2C8F1 /* Swither.swift in Sources */,
 				807729BA2381454800E296D3 /* PasswordToggleVisibilityView.swift in Sources */,
 				8037806D238125AD00D2C8F1 /* VCProfile.swift in Sources */,
+				803038A623993607003D1DD0 /* VCHeaderPembelajaran.swift in Sources */,
 				8B60EAA32382111300918115 /* ImageResizer.swift in Sources */,
 				8B91A79723882C4400E4E369 /* VCDetailCourse.swift in Sources */,
 				8B27A1372386A3220016A03D /* CourseTableViewCell.swift in Sources */,
