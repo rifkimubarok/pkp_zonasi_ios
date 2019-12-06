@@ -74,6 +74,7 @@ class ApiHelper: NSObject {
                     return
                 }catch let JsonErr {
                     completion(false,nil)
+                    //error
                     print("We got error ",JsonErr)
                 }
                 
