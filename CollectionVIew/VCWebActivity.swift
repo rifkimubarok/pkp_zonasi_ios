@@ -16,13 +16,16 @@ class VCWebActivity: UIViewController {
     let password = UserDefaults.standard.string(forKey: "password") ?? ""
     var titleNav : String = ""
     let dialog = CustomDialog.instance
+    let apiHelper = ApiHelper()
     @IBOutlet weak var webView: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
         
         // Do any additional setup after loading the view.
-        webView.load(URLRequest(url: URL(string: stringModule)!))
+//        webView.load(URLRequest(url: URL(string: stringModule)!))
+        print(stringModule)
+        loadWeb(url: stringModule)
         navigationItem.title = self.titleNav
     }
     
@@ -36,6 +39,50 @@ class VCWebActivity: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func loadWeb(url : String){
+        let expired  = UserDefaults.standard.string(forKey: "expiredToken") ?? ""
+        let userId = UserDefaults.standard.integer(forKey: "userId")
+        print("Expired ",expired)
+        if expired != "" {
+            let format = DateFormatter()
+            format.timeZone = TimeZone.current
+            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let expiredDate = format.date(from: expired)
+            let currentDate = Date()
+            print("current date ",currentDate)
+            print("expired date ",expiredDate)
+            if currentDate >= currentDate {
+                apiHelper.getTokenAutoLogin { (status, result) in
+                    let key = result?.key
+                    let urlAutoLogin = result?.autologinurl ?? ""
+                    let urlModule = "\(urlAutoLogin)?userid=\(userId)&key=\(key)&urltogo=\(url)"
+                    DispatchQueue.main.async {
+                        self.webView.load(URLRequest(url: URL(string: urlModule)!))
+                    }
+                }
+            }else{
+                let key = UserDefaults.standard.integer(forKey: "keyLogin")
+                let urlAutoLogin = UserDefaults.standard.string(forKey: "autologin") ?? ""
+                let urlModule = "\(urlAutoLogin)?userid=\(userId)&key=\(key)&urltogo=\(url)"
+                print(urlModule)
+                DispatchQueue.main.async {
+                    self.webView.load(URLRequest(url: URL(string: urlModule)!))
+                }
+            }
+        }else{
+            apiHelper.getTokenAutoLogin { (status, result) in
+                let key = result?.key ?? ""
+                let urlAutoLogin = result?.autologinurl ?? ""
+                let urlModule = "\(urlAutoLogin)?userid=\(userId)&key=\(key)&urltogo=\(url)"
+                DispatchQueue.main.async {
+                    self.webView.load(URLRequest(url: URL(string: urlModule)!))
+                }
+            }
+        }
+        
+    }
+    
 
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         if webView.canGoBack {

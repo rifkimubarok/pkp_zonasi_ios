@@ -79,8 +79,10 @@ class VCPembelajaran: UIViewController {
 //        setupBarButtonItems()
 //        setupCollectionView()
 //        setupCollectionViewItemSize()
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+
         
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

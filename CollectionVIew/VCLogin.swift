@@ -9,6 +9,7 @@
 import UIKit
 
 struct Profile: Decodable {
+    let id : Int
     let username : String
     let firstname : String
     let fullname : String
@@ -83,44 +84,44 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
         //        let lock = NSLock()
                 let dialog = CustomDialog.instance
                 dialog.showLoaderView()
-                checkUser_by_password(){status,json,error in
-                    DispatchQueue.main.async {
-                        dialog.hideLoaderView()
-                        if status! {
-        //                    var urlString : String = self.apiHelper.EndPointAPI
-        //                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
-        //                    guard let url = URL(string: urlString) else { return }
-                            //Login via safari web browser
-        //                    UIApplication.shared.open(url)
-                            //login via webkit view
-        //                    self.navigateLoginSimpkb()
-                            UserDefaults.standard.set(true, forKey: "status")
-                            Switcher.updateRootVC()
-                        }else{
-                            self.creatAlert(message: "Username/Password Salah!")
-                        }
-                    }
-
-                }
-        
-//        checkUser(){status,json,error in
-//            DispatchQueue.main.async {
-//                dialog.hideLoaderView()
-//                if status! {
-//                    var urlString : String = self.apiHelper.EndPointAPI
-//                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
-//                    guard let url = URL(string: urlString) else { return }
-//                    //Login via safari web browser
-////                    UIApplication.shared.open(url)
-//                    //login via webkit view
-//                    self.navigateLoginSimpkb()
-////                    UserDefaults.standard.set(true, forKey: "status")
-////                    Switcher.updateRootVC()
-//                }else{
-//                    self.creatAlert(message: "Username/Password Salah!")
+//                checkUser_by_password(){status,json,error in
+//                    DispatchQueue.main.async {
+//                        dialog.hideLoaderView()
+//                        if status! {
+//        //                    var urlString : String = self.apiHelper.EndPointAPI
+//        //                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+//        //                    guard let url = URL(string: urlString) else { return }
+//                            //Login via safari web browser
+//        //                    UIApplication.shared.open(url)
+//                            //login via webkit view
+//        //                    self.navigateLoginSimpkb()
+//                            UserDefaults.standard.set(true, forKey: "status")
+//                            Switcher.updateRootVC()
+//                        }else{
+//                            self.creatAlert(message: "Username/Password Salah!")
+//                        }
+//                    }
+//
 //                }
-//            }
-//        }
+        
+        checkUser(){status,json,error in
+            DispatchQueue.main.async {
+                dialog.hideLoaderView()
+                if status! {
+                    var urlString : String = self.apiHelper.EndPointAPI
+                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+                    guard let url = URL(string: urlString) else { return }
+                    //Login via safari web browser
+//                    UIApplication.shared.open(url)
+                    //login via webkit view
+                    self.navigateLoginSimpkb()
+//                    UserDefaults.standard.set(true, forKey: "status")
+//                    Switcher.updateRootVC()
+                }else{
+                    self.creatAlert(message: "Username/Password Salah!")
+                }
+            }
+        }
     }
 //    @IBAction func btnActionLogin(_ sender: Any) {
 //
@@ -158,6 +159,7 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
                 do {
                     let json = try JSONDecoder().decode([Profile].self,from: data)
                     if json.count > 0 {
+                        UserDefaults.standard.set(json[0].id, forKey: "userId")
                         completion(true,json,error)
                         return
                     }else{
