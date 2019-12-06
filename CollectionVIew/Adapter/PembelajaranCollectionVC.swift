@@ -84,6 +84,10 @@ class PembelajaranCollectionVC: UICollectionViewController {
         }
         fatalError("Unexpected kind")
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: self.view.frame.width * 0.39)
+    }
 
     // init banyaknya course
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

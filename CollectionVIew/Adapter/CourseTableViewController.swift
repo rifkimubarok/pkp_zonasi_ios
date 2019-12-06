@@ -64,7 +64,10 @@ class CourseTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return course_data.count
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return self.view.frame.width * 0.36
+    }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +75,7 @@ class CourseTableViewController: UITableViewController {
         let course = course_data[indexPath.item]
         cell.CourseName.text = course.fullname
         let urlImage = apiHelper.urlforImage + course.courseimage
-        cell.bannerImage.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "no_image.png"))
+        cell.bannerImage.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "Logo-PKP"))
         return cell
     }
     
