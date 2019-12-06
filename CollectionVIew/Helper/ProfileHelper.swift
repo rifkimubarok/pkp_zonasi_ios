@@ -127,6 +127,24 @@ class ProfileHelper {
         }
         profileTask.resume()
     }
+    
+    func parsingToken(token : String){
+        print(token)
+        let itemArr = token.components(separatedBy: "://token=")
+        if itemArr.count > 1 {
+            let base64Encoded = itemArr[1]
+            let decodedData = Data(base64Encoded: base64Encoded)!
+            let decodedString = String(data: decodedData, encoding: .utf8)!
+            
+            let tokenArr = decodedString.components(separatedBy: ":::")
+            print(tokenArr.count)
+            if(tokenArr.count >= 2){
+                UserDefaults.standard.set(tokenArr[1], forKey: "token")
+                UserDefaults.standard.set(tokenArr[2], forKey: "privatetoken")
+            }
+        }
+        
+    }
 }
 
 extension String{

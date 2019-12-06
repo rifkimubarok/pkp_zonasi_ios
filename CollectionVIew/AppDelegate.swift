@@ -50,10 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var parameters: [String: String] = [:]
             URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
                 parameters[$0.name] = $0.value
-                print("hellow")
+                let profileHelper = ProfileHelper()
+                profileHelper.parsingToken(token: parameters["param"]!)
             }
         }
-        print(url)
+//        print(url)
         UserDefaults.standard.set(true, forKey: "status")
         Switcher.updateRootVC()
         return true
