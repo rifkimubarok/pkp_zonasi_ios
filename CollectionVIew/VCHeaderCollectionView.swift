@@ -11,8 +11,6 @@ import UIKit
 class VCHeaderCollectionView: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UINib(nibName: "PembelajaranItemCell", bundle: nil), forCellWithReuseIdentifier: "CourseItem");

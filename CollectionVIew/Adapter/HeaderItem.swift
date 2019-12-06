@@ -13,11 +13,10 @@ class HeaderItem: UICollectionReusableView {
         
     @IBOutlet weak var webView: WKWebView!
     
-    @IBOutlet weak var viewHeader: UIView!
     override func awakeFromNib() {
         webView.navigationDelegate = self
     }
-} 
+}
 
 extension HeaderItem : WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

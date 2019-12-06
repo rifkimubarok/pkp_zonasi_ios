@@ -13,6 +13,6 @@ class VCTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any ad ditional setup after loading the view.
+        // Do any additional setup after loading the view.
     }
 }

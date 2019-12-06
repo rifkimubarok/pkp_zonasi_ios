@@ -21,7 +21,7 @@ class ModuleFileCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configu re the view for the selected state
+        // Configure the view for the selected state
     }
     
 }

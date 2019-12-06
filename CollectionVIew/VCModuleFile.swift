@@ -92,7 +92,6 @@ extension URL {
 }
 
 extension VCModuleFile : UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content!.count
     }
@@ -129,7 +128,7 @@ extension VCModuleFile : UITableViewDataSource, UITableViewDelegate {
         }else{
             url = url! + "?token=\(token)"
         }
-        print(url)
+//        print(url)
 //        DispatchQueue.main.async {
             storeAndShare(withURLString: url!)
 //        }

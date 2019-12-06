@@ -9,14 +9,13 @@
 import UIKit
 
 class CourseTableViewCell: UITableViewCell {
- 
+
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var CourseName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -18,7 +18,7 @@ class CustomLayout: UICollectionViewLayout {
     
     var numberOfColumns = 2
     var cellPadding: CGFloat = 3
-     
+    
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
     
     fileprivate var contentHeight: CGFloat = 0

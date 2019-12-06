@@ -9,6 +9,7 @@
 import UIKit
 
 struct Profile: Decodable {
+    let id : Int
     let username : String
     let firstname : String
     let fullname : String
@@ -83,25 +84,44 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
         //        let lock = NSLock()
                 let dialog = CustomDialog.instance
                 dialog.showLoaderView()
-                checkUser_by_password(){status,json,error in
-                    DispatchQueue.main.async {
-                        dialog.hideLoaderView()
-                        if status! {
-        //                    var urlString : String = self.apiHelper.EndPointAPI
-        //                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
-        //                    guard let url = URL(string: urlString) else { return }
-                            //Login via safari web browser
-        //                    UIApplication.shared.open(url)
-                            //login via webkit view
-        //                    self.navigateLoginSimpkb()
-                            UserDefaults.standard.set(true, forKey: "status")
-                            Switcher.updateRootVC()
-                        }else{
-                            self.creatAlert(message: "Username/Password Salah!")
-                        }
-                    }
-                    
+//                checkUser_by_password(){status,json,error in
+//                    DispatchQueue.main.async {
+//                        dialog.hideLoaderView()
+//                        if status! {
+//        //                    var urlString : String = self.apiHelper.EndPointAPI
+//        //                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+//        //                    guard let url = URL(string: urlString) else { return }
+//                            //Login via safari web browser
+//        //                    UIApplication.shared.open(url)
+//                            //login via webkit view
+//        //                    self.navigateLoginSimpkb()
+//                            UserDefaults.standard.set(true, forKey: "status")
+//                            Switcher.updateRootVC()
+//                        }else{
+//                            self.creatAlert(message: "Username/Password Salah!")
+//                        }
+//                    }
+//
+//                }
+        
+        checkUser(){status,json,error in
+            DispatchQueue.main.async {
+                dialog.hideLoaderView()
+                if status! {
+                    var urlString : String = self.apiHelper.EndPointAPI
+                    urlString += "admin/tool/mobile/launch.php?service=moodle_mobile_app&urlscheme=pkpzonasi://login/token?param=&passport="
+                    guard let url = URL(string: urlString) else { return }
+                    //Login via safari web browser
+//                    UIApplication.shared.open(url)
+                    //login via webkit view
+                    self.navigateLoginSimpkb()
+//                    UserDefaults.standard.set(true, forKey: "status")
+//                    Switcher.updateRootVC()
+                }else{
+                    self.creatAlert(message: "Username/Password Salah!")
                 }
+            }
+        }
     }
 //    @IBAction func btnActionLogin(_ sender: Any) {
 //
@@ -120,8 +140,14 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
 //        let url = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=" + apiHelper.default_token + "&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=email&values[0]="+username;
         
         // Server Bagren
-        let url = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=" + apiHelper.default_token + "&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&field=username&values[0]="+username;
+//        var url : String = apiHelper.EndPointAPI + "webservice/rest/server.php?wstoken=\(apiHelper.default_token) &wsfunction=core_user_get_users_by_field&moodlewsrestformat=json;
+        var url : String = "\(apiHelper.EndPointAPI)webservice/rest/server.php?wstoken=\(apiHelper.default_token)&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json&wsfunction=core_user_get_users_by_field&moodlewsrestformat=json"
         
+        if username.isValidEmail {
+            url = url + "&field=email&values[0]=\(username)"
+        }else{
+            url = url + "&field=username&values[0]=\(username)"
+        }
         
             guard let urlObj = URL(string: url) else { return }
             let task = URLSession.shared.dataTask(with: urlObj){(data, response,error) in
@@ -133,6 +159,7 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
                 do {
                     let json = try JSONDecoder().decode([Profile].self,from: data)
                     if json.count > 0 {
+                        UserDefaults.standard.set(json[0].id, forKey: "userId")
                         completion(true,json,error)
                         return
                     }else{
@@ -163,7 +190,7 @@ class VCLogin: UIViewController,UINavigationControllerDelegate {
         
         UserDefaults.standard.set(username, forKey: "username")
         UserDefaults.standard.set(password, forKey: "password")
-         
+        
         let url = apiHelper.EndPointAPI + "login/token.php?service=moodle_mobile_app&username=" + username + "&password=" + password
         
         let urlreq = URL(string: url)!

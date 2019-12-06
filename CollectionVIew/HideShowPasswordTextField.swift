@@ -119,5 +119,5 @@ extension HideShowPasswordTextField {
         // left view hack to add padding
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 3))
         self.leftViewMode = .always
-} 
+}
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class PembelajaranViewCell: UICollectionViewCell {
-     
+    
     @IBOutlet weak var course_image: UIImageView!
     @IBOutlet weak var course_name: UILabel!
 }

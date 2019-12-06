@@ -64,7 +64,10 @@ class CourseTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return course_data.count
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return self.view.frame.width * 0.36
+    }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,8 +76,6 @@ class CourseTableViewController: UITableViewController {
         cell.CourseName.text = course.fullname
         let urlImage = apiHelper.urlforImage + course.courseimage
         cell.bannerImage.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "Logo-PKP"))
-        cell.bannerImage.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - cell.CourseName.frame.height)
-        cell.bannerImage.clipsToBounds = true
         return cell
     }
     
@@ -83,10 +84,6 @@ class CourseTableViewController: UITableViewController {
             let course = self.course_data[indexPath.item]
             self.navigateToSection(course_id: course.id)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.width * 0.35	
     }
     
     // MARK: navigate to detail
@@ -134,7 +131,7 @@ class CourseTableViewController: UITableViewController {
                 print("We got error");
                 CustomDialog.instance.hideLoaderView()
                 return
-            } 
+            }
             guard let data = data else { return }
             UserDefaults.standard.set(data, forKey: "course" + token)
             self.push_data(data: data)

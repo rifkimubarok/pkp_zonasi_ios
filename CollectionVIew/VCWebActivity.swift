@@ -16,19 +16,22 @@ class VCWebActivity: UIViewController {
     let password = UserDefaults.standard.string(forKey: "password") ?? ""
     var titleNav : String = ""
     let dialog = CustomDialog.instance
+    let apiHelper = ApiHelper()
     @IBOutlet weak var webView: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.navigationDelegate = self
         
         // Do any additional setup after loading the view.
-        webView.load(URLRequest(url: URL(string: stringModule)!))
+//        webView.load(URLRequest(url: URL(string: stringModule)!))
+        print(stringModule)
+        loadWeb(url: stringModule)
         navigationItem.title = self.titleNav
     }
     
 
     /*
-    // MARK: - Navigation p
+    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,6 +39,68 @@ class VCWebActivity: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func loadWeb(url : String){
+        let expired  = UserDefaults.standard.string(forKey: "expiredToken") ?? ""
+        let userId = UserDefaults.standard.integer(forKey: "userId")
+        print("Expired ",expired)
+        if expired != "" {
+            let format = DateFormatter()
+            format.timeZone = TimeZone.current
+            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let expiredDate = format.date(from: expired)
+            let currentDate = Date()
+            print("current date ",currentDate)
+            print("expired date ",expiredDate!)
+            if currentDate > expiredDate! {
+                print("GET new")
+                apiHelper.getTokenAutoLogin { (status, result) in
+                    if(!status!){
+                        print("Fail")
+                        DispatchQueue.main.async {
+                            _ = self.navigationController?.popViewController(animated: true)
+                        }
+                        return
+                    }
+                    let key = result!.key!
+                    let urlAutoLogin = result?.autologinurl ?? ""
+                    let urlModule = "\(urlAutoLogin)?userid=\(userId)&key=\(key)&urltogo=\(url)"
+                    print(urlModule)
+                    DispatchQueue.main.async {
+                        self.webView.load(URLRequest(url: URL(string: urlModule)!))
+                    }
+                }
+            }else{
+                print("Using last")
+                let key = UserDefaults.standard.string(forKey: "keyLogin") ?? ""
+                let urlAutoLogin = UserDefaults.standard.string(forKey: "autologin") ?? ""
+                let urlModule = "\(urlAutoLogin)?userid=\(userId)&key=\(key)&urltogo=\(url)"
+                print(urlModule)
+                DispatchQueue.main.async {
+                    self.webView.load(URLRequest(url: URL(string: urlModule)!))
+                }
+            }
+        }else{
+            apiHelper.getTokenAutoLogin { (status, result) in
+                if(!status!){
+                    print("Fail")
+                    DispatchQueue.main.async {
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
+                    return
+                }
+                let key = result?.key ?? ""
+                let urlAutoLogin = result?.autologinurl ?? ""
+                let urlModule = "\(urlAutoLogin)?userid=\(userId)&key=\(key)&urltogo=\(url)"
+                print(urlModule)
+                DispatchQueue.main.async {
+                    self.webView.load(URLRequest(url: URL(string: urlModule)!))
+                }
+            }
+        }
+        
+    }
+    
 
     @IBAction func goBack(_ sender: UIBarButtonItem) {
         if webView.canGoBack {
@@ -97,7 +162,7 @@ extension VCWebActivity : WKNavigationDelegate {
         guard let url = webView.url else {return}
         let urlString = url.absoluteString
         
-        if urlString.contains("login") {
+        if urlString.contains("/login/") {
             let fillForm = String(format: "document.getElementById('username').value = '\(String(describing: username))';document.getElementById('password').value = '\(String(describing: password))';")
             webView.evaluateJavaScript(fillForm) { (result, error) in
                 if error != nil{

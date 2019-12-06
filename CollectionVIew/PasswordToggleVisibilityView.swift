@@ -20,7 +20,7 @@ class PasswordToggleVisibilityView: UIView {
     fileprivate let eyeButton: UIButton
     fileprivate let checkmarkImageView: UIImageView
     weak var delegate: PasswordToggleVisibilityDelegate?
-     
+    
     enum EyeState {
         case open
         case closed
