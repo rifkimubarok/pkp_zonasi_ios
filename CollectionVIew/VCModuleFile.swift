@@ -129,7 +129,7 @@ extension VCModuleFile : UITableViewDataSource, UITableViewDelegate {
         }else{
             url = url! + "?token=\(token)"
         }
-//        print(url)
+        print(url)
 //        DispatchQueue.main.async {
             storeAndShare(withURLString: url!)
 //        }

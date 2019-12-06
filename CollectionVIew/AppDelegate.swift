@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var parameters: [String: String] = [:]
             URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.forEach {
                 parameters[$0.name] = $0.value
-                print("hellow")
+                print("hello w")
             }
         }
         print(url)

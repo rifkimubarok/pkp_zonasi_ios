@@ -134,7 +134,7 @@ class CourseTableViewController: UITableViewController {
                 print("We got error");
                 CustomDialog.instance.hideLoaderView()
                 return
-            }
+            } 
             guard let data = data else { return }
             UserDefaults.standard.set(data, forKey: "course" + token)
             self.push_data(data: data)

@@ -23,7 +23,7 @@ public class ShowTextField: UITextField {
             }
         }
     }
-    
+     
     override public var isSecureTextEntry: Bool {
         didSet {
             if !self.isSecureTextEntry {

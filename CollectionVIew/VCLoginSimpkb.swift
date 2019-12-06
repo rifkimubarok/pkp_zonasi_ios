@@ -74,7 +74,7 @@ class VCLoginSimpkb: UIViewController,WKNavigationDelegate,UINavigationControlle
         default:
             decisionHandler(.allow)
             break
-        }
+        } 
     }
 }
 

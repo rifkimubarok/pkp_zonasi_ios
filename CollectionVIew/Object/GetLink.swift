@@ -34,7 +34,7 @@ class GetLink {
     func fixedLink(text : String) -> String {
         var summaryText : String = text
         let token = UserDefaults.standard.string(forKey: "token")  ?? ""
-        let result = self.matches(for: "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", in: text)
+        let result = self.matches(for: "(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]", in: text) 
         for item in result {
             let itemArr = item.split{$0 == "?"}.map(String.init)
             var url : String = "";

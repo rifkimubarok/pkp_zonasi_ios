@@ -85,7 +85,7 @@ class PembelajaranCollectionVC: UICollectionViewController {
 //                var summaryText : String = "<HTML><HEAD><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, shrink-to-fit=no\"></HEAD><BODY>" + moduleArr!.summary + "</BODY></HTML>"
 //                                summaryText = self.getLink.fixedLink(text: summaryText)
 //                                view.webView.loadHTMLString(summaryText, baseURL: URL(string: self.apiHelper.EndPointAPI))
-//            }
+//            } 
 //            return view
 //        }
 //        fatalError("Unexpected kind")

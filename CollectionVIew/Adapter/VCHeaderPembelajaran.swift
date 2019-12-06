@@ -25,7 +25,7 @@ class VCHeaderPembelajaran: UIViewController, UINavigationControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(loadHeader), name:NSNotification.Name(rawValue: "loadHeader"), object: nil)
         
         self.tableView.register(UINib(nibName: "ModuleFileCell", bundle: nil), forCellReuseIdentifier: "FileItemCell")
-        // Do any additional setup after loading the view.
+        // Do any additio nal setup after loading the view.
     }
     
     @objc func  loadHeader(notification: NSNotification){
